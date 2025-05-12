@@ -16,7 +16,7 @@
                 
 
                 <h4 class="card-title">Banner duzenle</h4>
-                <form method="post" action="{{ route('banner.guncelle') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                <form method="post" action="{{ route('banner.home.guncelle') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="id" value="{{ $homebanner->id }}">

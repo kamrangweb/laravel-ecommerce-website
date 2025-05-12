@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {
 
 Route::controller(BannerController::class)->group(function () {
     Route::get('/banner/duzenle', 'HomeBanner')->name('banner');
-    Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.guncelle');
+    Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.home.guncelle');
 });
 //Footer route
 
@@ -71,7 +71,7 @@ Route::controller(KategoriController::class)->group(function () {
     Route::post('/kategori/ekle/form', 'KategoriEkleForm')->name('kategori.ekle.form');
     Route::get('/kategori/duzenle/{id}', 'KategoriDuzenle')->name('kategori.duzenle');
     Route::post('/kategori/guncelle/form', 'KategoriGuncelleForm')->name('kategori.guncelle.form');
-    Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.guncelle');
+    // Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.kategori.guncelle');
     Route::get('/kategori/sil/{id}', 'KategoriSil')->name('kategori.sil');
 });
 
@@ -83,7 +83,7 @@ Route::controller(AltkategoriController::class)->group(function () {
     Route::post('/altkategori/ekle/form', 'AltKategoriEkleForm')->name('altkategori.ekle.form');
     Route::get('/altkategori/duzenle/{id}', 'AltKategoriDuzenle')->name('altkategori.duzenle');
     Route::post('/alt/guncelle/form', 'AltKategoriForm')->name('alt.guncelle');
-    Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.guncelle');
+    // Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.altkategori.guncelle');
     Route::get('/altkategori/sil/{id}', 'AltKategoriSil')->name('altkategori.sil');
     Route::get('/altkategoriler/ajax/{kategori_id}', 'AltAjax');
 });
@@ -136,7 +136,7 @@ Route::controller(BlogKategoriController::class)->group(function () {
     Route::post('/blog/kategori/guncelle/form', 'BlogKategoriGuncelle')->name('blog.kategori.guncelle');
     Route::get('/blog/kategori/sil/{id}', 'BlogKategoriSil')->name('blog.kategori.sil');
 
-    Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.guncelle');
+    // Route::post('/banner/guncelle', 'BannerGuncelle')->name('banner.blogkategori.guncelle');
 });
 
 

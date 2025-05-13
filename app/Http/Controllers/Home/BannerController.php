@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use Illuminate\Support\Facades\Storage;
 
 // require 'vendor.autoload.php';
 
@@ -21,56 +22,46 @@ class BannerController extends Controller
     }//function end
     
     public function BannerGuncelle(Request $request){
-        // $manager = new ImageManager(['driver' => 'imagick']);
         $banner_id = $request->id;
 
         if($request->file('resim')){
             $resim = $request->file('resim');
             $resimadi = hexdec(uniqid()).'.'.$resim->getClientOriginalExtension();
-            $resim->move(public_path('upload/banner'),$resimadi);
+            
+            // Store the image in the public directory
+            $resim->move(public_path('upload/banner'), $resimadi);
+            
             $resim_kaydet = 'upload/banner/'.$resimadi;
 
-            // $homebanner->save('upload/banner/'.$resimadi);
-
-
             Banner::findOrFail($banner_id)->update([
-                'baslik'=>$request->baslik,
-                'alt_baslik'=>$request->alt_baslik,
-                'url'=>$request->url,
-                'video_url'=>$request->video_url,
-                'resim'=>$resim_kaydet,
+                'baslik' => $request->baslik,
+                'alt_baslik' => $request->alt_baslik,
+                'url' => $request->url,
+                'video_url' => $request->video_url,
+                'resim' => $resim_kaydet,
             ]);
 
-
             $mesaj = array(
-                'bildirim'=>'resim başarılı.',
-                'alert-type'=>'success'
+                'bildirim' => 'Banner başarıyla güncellendi.',
+                'alert-type' => 'success'
             );
-            //bildirim
-    
-            return Redirect()->back()->with($mesaj);
-
-        }else{
-            Banner::findOrFail($banner_id)->update([
-                'baslik'=>$request->baslik,
-                'alt_baslik'=>$request->alt_baslik,
-                'url'=>$request->url,
-                'video_url'=>$request->video_url,
-            ]);
-
-
-            $mesaj = array(
-                'bildirim'=>'resimsiz başarılı.',
-                'alert-type'=>'success'
-            );
-            //bildirim
     
             return Redirect()->back()->with($mesaj);
         }
-        return view('admin.anasayfa.banner_duzenle',compact('homebanner'));
 
+        // If no image is uploaded, update without image
+        Banner::findOrFail($banner_id)->update([
+            'baslik' => $request->baslik,
+            'alt_baslik' => $request->alt_baslik,
+            'url' => $request->url,
+            'video_url' => $request->video_url,
+        ]);
 
-            $homebanner->save();
+        $mesaj = array(
+            'bildirim' => 'Banner başarıyla güncellendi.',
+            'alert-type' => 'success'
+        );
 
+        return Redirect()->back()->with($mesaj);
     }//function end
 }//class end

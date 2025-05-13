@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('baslikiki')->nullable();
             $table->string('baslikuc')->nullable();
             $table->string('telefon')->nullable();
+            $table->string('email')->nullable();
             $table->text('metin')->nullable();
             $table->string('sehir')->nullable();
             $table->string('adres')->nullable();

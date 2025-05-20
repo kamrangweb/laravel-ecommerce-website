@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Home\FrontController;
 use App\Http\Controllers\Home\HakkimizdaController;
 use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\LanguageController;
 
 //Teklif formu route
 
@@ -194,3 +195,6 @@ Route::controller(RolController::class)->group(function () {
 
 
 });
+
+// Language Switch Route
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');

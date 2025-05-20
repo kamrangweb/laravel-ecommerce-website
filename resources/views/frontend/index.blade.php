@@ -24,8 +24,8 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-6 col-lg-8">
                             <div class="section__title text-center">
-                                <span class="sub-title">03 - Working Process</span>
-                                <h2 class="title">A clear product design process is the basis of success</h2>
+                                <span class="sub-title">{{ __('home.work_process.subtitle') }}</span>
+                                <h2 class="title">{{ __('home.work_process.heading') }}</h2>
                             </div>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                                     <img class="dark" src="assets/img/icons/wp_icon01.png" alt="">
                                 </div>
                                 <div class="work__process__content">
-                                    <h4 class="title">Discover</h4>
-                                    <p>Initial ideas or inspiration & Establishment of user needs.</p>
+                                    <h4 class="title">{{ __('home.work_process.steps.discover.title') }}</h4>
+                                    <p>{{ __('home.work_process.steps.discover.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                                     <img class="dark" src="assets/img/icons/wp_icon02.png" alt="">
                                 </div>
                                 <div class="work__process__content">
-                                    <h4 class="title">Define</h4>
-                                    <p>Interpretation & Alignment of findings to project objectives.</p>
+                                    <h4 class="title">{{ __('home.work_process.steps.define.title') }}</h4>
+                                    <p>{{ __('home.work_process.steps.define.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -64,8 +64,8 @@
                                     <img class="dark" src="assets/img/icons/wp_icon03.png" alt="">
                                 </div>
                                 <div class="work__process__content">
-                                    <h4 class="title">Develop</h4>
-                                    <p>Design-Led concept and Proposals hearted & assessed</p>
+                                    <h4 class="title">{{ __('home.work_process.steps.develop.title') }}</h4>
+                                    <p>{{ __('home.work_process.steps.develop.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +77,8 @@
                                     <img class="dark" src="assets/img/icons/wp_icon04.png" alt="">
                                 </div>
                                 <div class="work__process__content">
-                                    <h4 class="title">Deliver</h4>
-                                    <p>Process outcomes finalised & Implemented</p>
+                                    <h4 class="title">{{ __('home.work_process.steps.deliver.title') }}</h4>
+                                    <p>{{ __('home.work_process.steps.deliver.description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -126,11 +126,11 @@
                         <div class="col-lg-6">
                             <div class="partner__content">
                                 <div class="section__title">
-                                    <span class="sub-title">05 - partners</span>
-                                    <h2 class="title">I proud to have collaborated with some awesome companies</h2>
+                                    <span class="sub-title">{{ __('home.partners.subtitle') }}</span>
+                                    <h2 class="title">{{ __('home.partners.heading') }}</h2>
                                 </div>
-                                <p>I'm a bit of a digital product junky. Over the years, I've used hundreds of web and mobile apps in different industries and verticals. Eventually, I decided that it would be a fun challenge to try designing and building my own.</p>
-                                <a href="contact.html" class="btn">Start a conversation</a>
+                                <p>{{ __('home.partners.description') }}</p>
+                                <a href="contact.html" class="btn">{{ __('home.partners.cta') }}</a>
                             </div>
                         </div>
                     </div>
@@ -156,8 +156,8 @@
                         <div class="col-xl-5 col-lg-6">
                             <div class="testimonial__wrap">
                                 <div class="section__title">
-                                    <span class="sub-title">06 - Client Feedback</span>
-                                    <h2 class="title">Happy clients feedback</h2>
+                                    <span class="sub-title">{{ __('home.testimonials.subtitle') }}</span>
+                                    <h2 class="title">{{ __('home.testimonials.heading') }}</h2>
                                 </div>
                                 <div class="testimonial__active">
                                     <div class="testimonial__item">
@@ -165,7 +165,7 @@
                                             <i class="fas fa-quote-left"></i>
                                         </div>
                                         <div class="testimonial__content">
-                                            <p>We are motivated by the satisfaction of our clients. Put your trust in us &share in our H.Spond Asset Management is made up of a team of expert, committed and experienced people with a passion for financial markets. Our goal is to achieve continuous.</p>
+                                            <p>{{ __('home.testimonials.content') }}</p>
                                             <div class="testimonial__avatar">
                                                 <span>Rasalina De Wiliamson</span>
                                             </div>
@@ -176,7 +176,7 @@
                                             <i class="fas fa-quote-left"></i>
                                         </div>
                                         <div class="testimonial__content">
-                                            <p>We are motivated by the satisfaction of our clients. Put your trust in us &share in our H.Spond Asset Management is made up of a team of expert, committed and experienced people with a passion for financial markets. Our goal is to achieve continuous.</p>
+                                            <p>{{ __('home.testimonials.content') }}</p>
                                             <div class="testimonial__avatar">
                                                 <span>Rasalina De Wiliamson</span>
                                             </div>

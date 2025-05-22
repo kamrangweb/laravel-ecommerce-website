@@ -35,7 +35,7 @@
                         <span>Banner</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('banner') }}">Banner duzenle</a></li>
+                        <li><a href="{{ route('banner') }}">Banner edit</a></li>
                     </ul>
                 </li>
 
@@ -44,16 +44,16 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
-                        <span>Hakimizda</span>
+                        <span>About section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('hakkimizda') }}">Hakimizda duzenle</a></li>
+                        <li><a href="{{ route('hakkimizda') }}">About edit</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('coklu.resim') }}">Coklu Resim</a></li>
+                        <li><a href="{{ route('coklu.resim') }}">Multiple Image</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('coklu.liste') }}">Coklu Resim Liste</a></li>
+                        <li><a href="{{ route('coklu.liste') }}">Multiple Image List</a></li>
                     </ul>
                 </li>
 
@@ -65,13 +65,13 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-layout-3-line"></i>
-                        <span>Kategoriler</span>
+                        <span>Categories</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('kategori.hepsi') }}">Kategori hepsi</a></li>
-                                <li><a href="{{ route('kategori.ekle') }}">Kategori ekle</a></li>
+                                <li><a href="{{ route('kategori.hepsi') }}">Category all</a></li>
+                                <li><a href="{{ route('kategori.ekle') }}">Categroy add</a></li>
                         </li>
                     </ul>
                 </li>
@@ -80,13 +80,13 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-layout-3-line"></i>
-                        <span>Alt Kategoriler</span>
+                        <span>Subcategories</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('altkategori.liste') }}">AltKategori liste</a></li>
-                                <li><a href="{{ route('altkategori.ekle') }}">Alt Kategori ekle</a></li>
+                                <li><a href="{{ route('altkategori.liste') }}">Subcategroy list</a></li>
+                                <li><a href="{{ route('altkategori.ekle') }}">Subcategry add</a></li>
                         </li>
                     </ul>
                 </li>
@@ -95,7 +95,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-layout-3-line"></i>
-                        <span>Urunler</span>
+                        <span>Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         

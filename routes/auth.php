@@ -15,6 +15,14 @@ Route::middleware('guest')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
+    // Registration OTP Routes
+    Route::get('verify-registration-otp', [RegisteredUserController::class, 'showOtpForm'])
+        ->name('verification.otp');
+    Route::post('verify-registration-otp', [RegisteredUserController::class, 'verifyOtp'])
+        ->name('verification.otp.verify');
+    Route::post('resend-registration-otp', [RegisteredUserController::class, 'resendOtp'])
+        ->name('verification.otp.resend');
+
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
@@ -34,7 +42,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    // OTP Verification Routes
+    // OTP Verification Routes for logged-in users
     Route::get('verify-otp', [OtpController::class, 'show'])
         ->name('verification.notice');
 

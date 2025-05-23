@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             HakkimizdaSeeder::class,
             BannersSeeder::class,
             FootersSeeder::class,
+            AboutSeeder::class
         ]);
     }
 }

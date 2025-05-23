@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Altkategoriler extends Model
+class Subcategory extends Model
 {
     //
     protected $guarded = [];
-    public function iliskikategori(){
-        return $this->belongsTo(Kategoriler::class,'kategori_id','id');
+    public function category(){
+        return $this->belongsTo(Category::class,'kategori_id','id');
     }
 }

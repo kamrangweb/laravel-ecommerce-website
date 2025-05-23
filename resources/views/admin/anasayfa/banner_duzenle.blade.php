@@ -1,6 +1,3 @@
-
-
-
 @extends('admin.admin_master')
 
 @section('admin')
@@ -12,25 +9,22 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-                
-
-                <h4 class="card-title">Banner duzenle</h4>
-                <form method="post" action="{{ route('banner.home.guncelle') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                <h4 class="card-title">Edit Banner</h4>
+                <form method="post" action="{{ route('banner.home.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="id" value="{{ $homebanner->id }}">
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Baslik</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="baslik" placeholder="Baslik" id="example-text-input" value="{{ $homebanner->baslik }}">
+                            <input class="form-control" type="text" name="baslik" placeholder="Title" id="example-text-input" value="{{ $homebanner->baslik }}">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Alt Baslik</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Subtitle</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="alt_baslik" placeholder="Alt Baslik" id="example-text-input" value="{{ $homebanner->alt_baslik }}">
+                            <input class="form-control" type="text" name="alt_baslik" placeholder="Subtitle" id="example-text-input" value="{{ $homebanner->alt_baslik }}">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -49,7 +43,7 @@
                     <!-- end row -->    
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2">Resim</label>
+                        <label for="example-text-input" class="col-sm-2">Image</label>
                         <div class="col-sm-10">
                             <input type="file" name="resim" id="resim" class="form-control">
                         </div>
@@ -58,11 +52,11 @@
                     <div class="row mb-3">
                         <label for="example-text-input" class="col-sm-2"></label>
                         <div class="col-sm-10">
-                            <img class="rounded avatar-lg" src="{{ (!empty($homebanner->resim)) ? url($homebanner->resim): url('upload/resim-yok.png') }}" alt="" id="resimGoster">
+                            <img class="rounded avatar-lg" src="{{ (!empty($homebanner->resim)) ? url($homebanner->resim): url('upload/no-image.png') }}" alt="" id="resimGoster">
                         </div>
                     </div>
 
-                    <input type="submit" class="btn btn-info " value="Guncelle"> 
+                    <input type="submit" class="btn btn-info" value="Update"> 
 
                 </form>
             </div>

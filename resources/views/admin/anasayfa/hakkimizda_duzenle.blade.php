@@ -1,6 +1,3 @@
-
-
-
 @extends('admin.admin_master')
 
 @section('admin')
@@ -15,61 +12,50 @@
 
                 
 
-                <h4 class="card-title">hakkimizda duzenle</h4>
-                <form method="post" action="{{ route('hakkimizda.guncelle') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                <h4 class="card-title">About Edit</h4>
+                <form method="post" action="{{ route('about.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                     @csrf
 
-                    <input type="hidden" name="id" value="{{ $hakkimizda->id }}">
-                    <input type="hidden" name="onceki_resim" value="{{ $hakkimizda->resim }}">
+                    <input type="hidden" name="id" value="{{ $about->id }}">
+                    <input type="hidden" name="old_image" value="{{ $about->about_image }}">
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Baslik</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="baslik" placeholder="Baslik" id="example-text-input" value="{{ $hakkimizda->baslik }}">
+                            <input class="form-control" type="text" name="title" placeholder="Title" id="example-text-input" value="{{ $about->title }}">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Kisa Baslik</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Short Title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="kisa_baslik" placeholder="Alt Baslik" id="example-text-input" value="{{ $hakkimizda->alt_baslik }}">
+                            <input class="form-control" type="text" name="short_title" placeholder="Short Title" id="example-text-input" value="{{ $about->short_title }}">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Kisa Aciklama</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Short Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" type="text" name="kisa_aciklama" placeholder="Alt Baslik" id="example-text-input" rows="4">
-                                {{ $hakkimizda->alt_baslik }}
-                            </textarea>
+                            <textarea class="form-control" name="short_description" rows="3">{{ $about->short_description }}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Aciklama</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Long Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" type="text" name="aciklama" placeholder="Alt Baslik" id="elm1">
-                               {{ $hakkimizda->aciklama }} 
-                            </textarea>
+                            <textarea class="form-control" name="long_description" rows="5">{{ $about->long_description }}</textarea>
                         </div>
                     </div>
-                   
-                    
-                    <!-- end row -->    
-
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2">Resim</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">About Image</label>
                         <div class="col-sm-10">
-                            <input type="file" name="resim" id="resim" class="form-control">
+                            <input class="form-control" type="file" name="about_image" id="image">
                         </div>
                     </div>
-
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2"></label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <img class="rounded avatar-lg" src="{{ (!empty($hakkimizda->resim)) ? url($hakkimizda->resim): url('upload/resim-yok.png') }}" alt="" id="resimGoster">
+                            <img class="rounded avatar-lg" src="{{ (!empty($about->about_image))? url($about->about_image): url('upload/no_image.jpg') }}" alt="About Image">
                         </div>
                     </div>
-
-                    <input type="submit" class="btn btn-info " value="hakkimizda Guncelle"> 
-
+                    <input type="submit" class="btn btn-info waves-effect waves-light" value="Update About">
                 </form>
             </div>
         </div>

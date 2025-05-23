@@ -8,7 +8,7 @@
 <body>
 
 <h1>Iiletsim</h1>
-<a href="{{route('hak.yon')}}">Hakkimizda</a>
+<a href="{{route('home.about')}}">About Us</a>
 
     
 </body>

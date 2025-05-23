@@ -47,13 +47,13 @@
                         <span>About section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('hakkimizda') }}">About edit</a></li>
+                        <li><a href="{{ route('about') }}">About edit</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('coklu.resim') }}">Multiple Image</a></li>
+                        <li><a href="{{ route('multiple.image') }}">Multiple Image</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('coklu.liste') }}">Multiple Image List</a></li>
+                        <li><a href="{{ route('multiple.list') }}">Multiple Image List</a></li>
                     </ul>
                 </li>
 
@@ -70,8 +70,8 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('kategori.hepsi') }}">Category all</a></li>
-                                <li><a href="{{ route('kategori.ekle') }}">Categroy add</a></li>
+                                <li><a href="{{ route('category.all') }}">Category all</a></li>
+                                <li><a href="{{ route('category.add') }}">Category add</a></li>
                         </li>
                     </ul>
                 </li>
@@ -85,8 +85,8 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('altkategori.liste') }}">Subcategroy list</a></li>
-                                <li><a href="{{ route('altkategori.ekle') }}">Subcategry add</a></li>
+                                <li><a href="{{ route('subcategory.list') }}">Subcategory list</a></li>
+                                <li><a href="{{ route('subcategory.add') }}">Subcategory add</a></li>
                         </li>
                     </ul>
                 </li>
@@ -100,8 +100,8 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('urun.liste') }}">Liste</a></li>
-                                <li><a href="{{ route('urun.ekle') }}">Urun ekle</a></li>
+                                <li><a href="{{ route('product.list') }}">Product list</a></li>
+                                <li><a href="{{ route('product.add') }}">Add product</a></li>
                         </li>
                     </ul>
                 </li>
@@ -114,8 +114,8 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('blog.liste') }}">Liste</a></li>
-                                <li><a href="{{ route('blog.kategori.ekle') }}">Kategori ekle</a></li>
+                                <li><a href="{{ route('blog.list') }}">Blog list</a></li>
+                                <li><a href="{{ route('blog.category.add') }}">Add category</a></li>
                         </li>
                     </ul>
                 </li>
@@ -129,8 +129,8 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('icerik.liste') }}">Liste</a></li>
-                                <li><a href="{{ route('blog.icerik.ekle') }}">Kategori ekle</a></li>
+                                <li><a href="{{ route('content.list') }}">Content list</a></li>
+                                <li><a href="{{ route('blog.content.add') }}">Add content</a></li>
                         </li>
                     </ul>
                 </li>
@@ -144,7 +144,7 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('footer.duzenle') }}">Liste</a></li>
+                                <li><a href="{{ route('footer.edit') }}">Edit footer</a></li>
                         </li>
                     </ul>
                 </li>
@@ -159,10 +159,10 @@
                     <ul class="sub-menu" aria-expanded="true">
                         
                         <li>
-                                <li><a href="{{ route('izin.liste') }}">Izinler</a></li>
-                                <li><a href="{{ route('rol.liste') }}">Roller</a></li>
-                                <li><a href="{{ route('rol.izin.verme') }}">Rol Izin Ver</a></li>
-                                <li><a href="{{ route('rol.yetki.liste') }}">Rol Yetki Liste</a></li>
+                                <li><a href="{{ route('permission.list') }}">Permissions</a></li>
+                                <li><a href="{{ route('role.list') }}">Roles</a></li>
+                                <li><a href="{{ route('role.permission.assign') }}">Assign permissions</a></li>
+                                <li><a href="{{ route('role.permission.list') }}">Role permissions list</a></li>
                         </li>
                     </ul>
                 </li>

@@ -120,7 +120,7 @@
                 <div class="banner__content">
                     <h2 class="title wow fadeInUp" data-wow-delay=".2s"><span>{{ $homebanner->translated_title }}</span></h2>
                     <p class="wow fadeInUp" data-wow-delay=".4s">{{ $homebanner->translated_subtitle }}</p>
-                    <a href="{{ route('anasayfa.hakkimizda') }}" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">{{ __('banner.more_about') }}</a>
+                    <a href="{{ route('home.about') }}" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">{{ __('banner.more_about') }}</a>
                 </div>
             </div>
         </div>

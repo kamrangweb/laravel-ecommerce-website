@@ -31,22 +31,22 @@
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
                                     <li class="active"><a href="{{ url('/') }}">{{ __('menu.home') }}</a></li>
-                                    <li><a href="{{ url('/hakkimizda') }}">{{ __('menu.about') }}</a></li>
+                                    <li><a href="{{ url('/about') }}">{{ __('menu.about') }}</a></li>
 
                                     @php
-                                        $kategoriler = App\Models\Kategoriler::orderBy('kategori_adi','ASC')->limit(2)->get();
+                                        $categories = App\Models\Category::orderBy('category_name','ASC')->limit(2)->get();
                                     @endphp
 
-                                    @foreach ($kategoriler as $kategori)
+                                    @foreach ($categories as $category)
                                         <li class="menu-item-has-children">
-                                            <a href="{{ url('kategori/'.$kategori->id.'/'.$kategori->kategori_url) }}">{{ $kategori->kategori_adi }}</a>
+                                            <a href="{{ url('category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a>
                                             @php
-                                                $altkategoriler = App\Models\Altkategoriler::where('kategori_id',$kategori->id)->orderBy('altkategori_adi','ASC')->get();
+                                                $subcategories = App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
                                             @endphp
                                             
                                             <ul class="sub-menu">
-                                                @foreach ($altkategoriler as $altkategori)
-                                                    <li><a href="{{ url('altkategori/'.$altkategori->id.'/'.$altkategori->altkategori_url) }}">{{ $altkategori->altkategori_adi }}</a></li>
+                                                @foreach ($subcategories as $subcategory)
+                                                    <li><a href="{{ url('subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -59,7 +59,7 @@
                                             <li><a href="{{url('/blog')}}">{{ __('menu.featured_posts') }}</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="{{ route('iletisim') }}">{{ __('menu.contact') }}</a></li>
+                                    <li><a href="{{ route('contact') }}">{{ __('menu.contact') }}</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">
                                             <i class="fas fa-globe"></i> 
@@ -90,7 +90,7 @@
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
-                                <a href="{{ route('iletisim') }}" class="btn">{{ __('menu.contact_us') }}</a>
+                                <a href="{{ route('contact') }}" class="btn">{{ __('menu.contact_us') }}</a>
                             </div>
                         </nav>
                     </div>

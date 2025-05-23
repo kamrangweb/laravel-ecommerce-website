@@ -3,199 +3,174 @@
     {{ implode('', $errors->all('<div>:message</div>')) }}
 @endif
 @section('main')
-    
-
-     
-     <!-- banner-area -->
-            @include('frontend.anasayfa.banner')
-            <!-- banner-area-end -->
-
-            <!-- about-area -->
-            @include('frontend.anasayfa.anasayfa_hakkimizda')
-            <!-- about-area-end -->
-
-            <!-- services-area -->
-            @include('frontend.anasayfa.random_kategori')
-            <!-- services-area-end -->
-
-            <!-- work-process-area -->
-            <section class="work__process">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-6 col-lg-8">
-                            <div class="section__title text-center">
-                                <span class="sub-title">{{ __('home.work_process.subtitle') }}</span>
-                                <h2 class="title">{{ __('home.work_process.heading') }}</h2>
-                            </div>
+    <!-- Hero Section -->
+    <section class="hero-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".2s">Innovative Solutions for Your Business</h1>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">We help businesses transform their digital presence with cutting-edge technology and creative solutions.</p>
+                        <div class="hero-btn wow fadeInUp" data-wow-delay=".6s">
+                            <a href="{{ route('contact') }}" class="btn">Get Started</a>
+                            <a href="{{ url('/about') }}" class="btn btn-outline">Learn More</a>
                         </div>
                     </div>
-                    <div class="row work__process__wrap">
-                        <div class="col">
-                            <div class="work__process__item">
-                                <span class="work__process_step">Step - 01</span>
-                                <div class="work__process__icon">
-                                    <img class="light" src="assets/img/icons/wp_light_icon01.png" alt="">
-                                    <img class="dark" src="assets/img/icons/wp_icon01.png" alt="">
-                                </div>
-                                <div class="work__process__content">
-                                    <h4 class="title">{{ __('home.work_process.steps.discover.title') }}</h4>
-                                    <p>{{ __('home.work_process.steps.discover.description') }}</p>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
+                        <img src="{{ asset('frontend/assets/img/hero/hero-1.png') }}" alt="Hero Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-area section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center">
+                        <span class="sub-title">Our Services</span>
+                        <h2 class="title">What We Do</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
                         </div>
-                        <div class="col">
-                            <div class="work__process__item">
-                                <span class="work__process_step">Step - 02</span>
-                                <div class="work__process__icon">
-                                    <img class="light" src="assets/img/icons/wp_light_icon02.png" alt="">
-                                    <img class="dark" src="assets/img/icons/wp_icon02.png" alt="">
-                                </div>
-                                <div class="work__process__content">
-                                    <h4 class="title">{{ __('home.work_process.steps.define.title') }}</h4>
-                                    <p>{{ __('home.work_process.steps.define.description') }}</p>
-                                </div>
-                            </div>
+                        <h4>Web Development</h4>
+                        <p>Custom web solutions tailored to your business needs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div class="col">
-                            <div class="work__process__item">
-                                <span class="work__process_step">Step - 03</span>
-                                <div class="work__process__icon">
-                                    <img class="light" src="assets/img/icons/wp_light_icon03.png" alt="">
-                                    <img class="dark" src="assets/img/icons/wp_icon03.png" alt="">
-                                </div>
-                                <div class="work__process__content">
-                                    <h4 class="title">{{ __('home.work_process.steps.develop.title') }}</h4>
-                                    <p>{{ __('home.work_process.steps.develop.description') }}</p>
-                                </div>
-                            </div>
+                        <h4>Mobile Apps</h4>
+                        <p>Native and cross-platform mobile applications.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="col">
-                            <div class="work__process__item">
-                                <span class="work__process_step">Step - 04</span>
-                                <div class="work__process__icon">
-                                    <img class="light" src="assets/img/icons/wp_light_icon04.png" alt="">
-                                    <img class="dark" src="assets/img/icons/wp_icon04.png" alt="">
-                                </div>
-                                <div class="work__process__content">
-                                    <h4 class="title">{{ __('home.work_process.steps.deliver.title') }}</h4>
-                                    <p>{{ __('home.work_process.steps.deliver.description') }}</p>
+                        <h4>Digital Marketing</h4>
+                        <p>Strategic marketing solutions to grow your business.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-area section-padding bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="{{ asset('frontend/assets/img/about/about-1.jpg') }}" alt="About Image">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <span class="sub-title">About Us</span>
+                        <h2 class="title">Your Trusted Technology Partner</h2>
+                        <p>With years of experience in the industry, we've helped numerous businesses achieve their digital goals. Our team of experts is dedicated to delivering high-quality solutions that drive results.</p>
+                        <ul class="about-list">
+                            <li><i class="fas fa-check"></i> Expert Team</li>
+                            <li><i class="fas fa-check"></i> Quality Service</li>
+                            <li><i class="fas fa-check"></i> 24/7 Support</li>
+                        </ul>
+                        <a href="{{ url('/about') }}" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-area section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center">
+                        <span class="sub-title">Our Work</span>
+                        <h2 class="title">Recent Projects</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @include('frontend.home.multiple')
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-area section-padding bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center">
+                        <span class="sub-title">Testimonials</span>
+                        <h2 class="title">What Our Clients Say</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="testimonials-slider">
+                        <div class="testimonial-item text-center">
+                            <div class="testimonial-content">
+                                <p>"Working with this team has been an absolute pleasure. They delivered our project on time and exceeded our expectations."</p>
+                                <div class="testimonial-author">
+                                    <h5>John Smith</h5>
+                                    <span>CEO, Tech Solutions</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- work-process-area-end -->
+            </div>
+        </div>
+    </section>
 
-            <!-- portfolio-area -->
-            @include('frontend.anasayfa.coklu')            
-            <!-- portfolio-area-end -->
-
-            <!-- partner-area -->
-            <section class="partner">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <ul class="partner__logo__wrap">
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light01.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_01.png" alt="">
-                                </li>
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light02.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_02.png" alt="">
-                                </li>
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light03.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_03.png" alt="">
-                                </li>
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light04.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_04.png" alt="">
-                                </li>
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light05.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_05.png" alt="">
-                                </li>
-                                <li>
-                                    <img class="light" src="assets/img/icons/partner_light06.png" alt="">
-                                    <img class="dark" src="assets/img/icons/partner_06.png" alt="">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="partner__content">
-                                <div class="section__title">
-                                    <span class="sub-title">{{ __('home.partners.subtitle') }}</span>
-                                    <h2 class="title">{{ __('home.partners.heading') }}</h2>
-                                </div>
-                                <p>{{ __('home.partners.description') }}</p>
-                                <a href="contact.html" class="btn">{{ __('home.partners.cta') }}</a>
-                            </div>
-                        </div>
+    <!-- Blog Section -->
+    <section class="blog-area section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center">
+                        <span class="sub-title">Latest News</span>
+                        <h2 class="title">From Our Blog</h2>
                     </div>
                 </div>
-            </section>
-            <!-- partner-area-end -->
+            </div>
+            <div class="row">
+                @include('frontend.home.home_blog')
+            </div>
+        </div>
+    </section>
 
-            <!-- testimonial-area -->
-            <section class="testimonial">
-                <div class="container">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-6 order-0 order-lg-2">
-                            <ul class="testimonial__avatar__img">
-                                <li><img src="assets/img/images/testi_img01.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img02.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img03.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img04.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img05.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img06.png" alt=""></li>
-                                <li><img src="assets/img/images/testi_img07.png" alt=""></li>
-                            </ul>
-                        </div>
-                        <div class="col-xl-5 col-lg-6">
-                            <div class="testimonial__wrap">
-                                <div class="section__title">
-                                    <span class="sub-title">{{ __('home.testimonials.subtitle') }}</span>
-                                    <h2 class="title">{{ __('home.testimonials.heading') }}</h2>
-                                </div>
-                                <div class="testimonial__active">
-                                    <div class="testimonial__item">
-                                        <div class="testimonial__icon">
-                                            <i class="fas fa-quote-left"></i>
-                                        </div>
-                                        <div class="testimonial__content">
-                                            <p>{{ __('home.testimonials.content') }}</p>
-                                            <div class="testimonial__avatar">
-                                                <span>Rasalina De Wiliamson</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial__item">
-                                        <div class="testimonial__icon">
-                                            <i class="fas fa-quote-left"></i>
-                                        </div>
-                                        <div class="testimonial__content">
-                                            <p>{{ __('home.testimonials.content') }}</p>
-                                            <div class="testimonial__avatar">
-                                                <span>Rasalina De Wiliamson</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial__arrow"></div>
-                            </div>
-                        </div>
+    <!-- CTA Section -->
+    <section class="cta-area section-padding bg-primary">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="cta-content text-center">
+                        <h2>Ready to Start Your Project?</h2>
+                        <p>Let's work together to bring your ideas to life.</p>
+                        <a href="{{ route('contact') }}" class="btn btn-light">Get in Touch</a>
                     </div>
                 </div>
-            </section>
-            <!-- testimonial-area-end -->
-
-            <!-- blog-area -->
-            @include('frontend.anasayfa.anasayfa_blog')
-            
-            <!-- blog-area-end -->
-
-           
-            @endsection
+            </div>
+        </div>
+    </section>
+@endsection
      

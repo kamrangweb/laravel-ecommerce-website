@@ -11,7 +11,7 @@
                     <h2 class="title">Contact us</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Ana sayfa</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Contact</li>
                         </ol>
                     </nav>
@@ -40,40 +40,39 @@
 <!-- contact-map-end -->
 
 <!-- contact-area -->
-  <!-- contact-area -->
-  <div class="contact-area">
+<div class="contact-area">
     <div class="container">
-        <form method="post" action="{{ route('teklif.form') }}" class="contact__form" id="myForm">
+        <form method="post" action="{{ route('offer.form') }}" class="contact__form" id="myForm">
             @csrf
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <input type="text" name="adi" placeholder="Ad soyad*">
+                    <input type="text" name="adi" placeholder="Full Name*">
                     @error('adi')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-6 form-group">
-                    <input type="email" name="email" placeholder="Enter your mail*">
+                    <input type="email" name="email" placeholder="Email Address*">
                     @error('email')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-6 form-group">
-                    <input type="text" name="telefon" placeholder="Enter your telefon*">
+                    <input type="text" name="telefon" placeholder="Phone Number*">
                     @error('telefon')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-6 form-group">
-                    <input type="text" name="konu" placeholder="Konu">
+                    <input type="text" name="konu" placeholder="Subject">
                     @error('konu')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-            <textarea type="text" name="mesaj" id="message" placeholder="Enter your massage*"></textarea>
-            <button type="submit" class="btn">Teklif gonder</button>
+            <textarea type="text" name="mesaj" id="message" placeholder="Your Message*"></textarea>
+            <button type="submit" class="btn">Send Message</button>
         </form>
     </div>
 </div>
@@ -89,7 +88,7 @@
                         <img src="assets/img/icons/contact_icon01.png" alt="">
                     </div>
                     <div class="contact__info__content">
-                        <h4 class="title">address line</h4>
+                        <h4 class="title">Address</h4>
                         <span>Bowery St, New York, <br> NY 10013,USA</span>
                     </div>
                 </div>
@@ -112,7 +111,7 @@
                         <img src="assets/img/icons/contact_icon03.png" alt="">
                     </div>
                     <div class="contact__info__content">
-                        <h4 class="title">Mail Address</h4>
+                        <h4 class="title">Email Address</h4>
                         <span>email@example.com</span>
                         <span>info@yourdomain.com</span>
                     </div>
@@ -144,7 +143,7 @@
                             <input type="text" placeholder="Enter name*">
                             <input type="email" placeholder="Enter mail*">
                             <input type="number" placeholder="Enter number*">
-                            <textarea name="message" placeholder="Enter Massage*"></textarea>
+                            <textarea name="message" placeholder="Enter Message*"></textarea>
                             <button type="submit">Send Message</button>
                         </form>
                     </div>

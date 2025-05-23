@@ -1,10 +1,30 @@
-* text=auto eol=lf
+# Set default behavior to automatically normalize line endings
+* text=auto
 
-*.blade.php diff=html
+# PHP files
+*.php linguist-language=PHP
+*.blade.php linguist-language=PHP
+
+# Exclude node_modules from language statistics
+node_modules/* linguist-vendored
+public/build/* linguist-vendored
+resources/js/* linguist-vendored
+resources/css/* linguist-vendored
+
+# Force specific file types to be counted as PHP
+app/**/*.php linguist-language=PHP
+routes/**/*.php linguist-language=PHP
+database/**/*.php linguist-language=PHP
+config/**/*.php linguist-language=PHP
+resources/views/**/*.blade.php linguist-language=PHP
+
+# Mark build and dependency directories as vendored
+vendor/** linguist-vendored
+public/vendor/** linguist-vendored
+
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
-*.php diff=php
 
 /.github export-ignore
 CHANGELOG.md export-ignore

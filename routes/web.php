@@ -144,6 +144,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Front route
+Route::get('/shop', [FrontController::class, 'shop'])->name('shop');
+Route::get('/categories', [FrontController::class, 'categories'])->name('categories');
 Route::get('/product/{id}/{url}', [FrontController::class, 'productDetail']);
 Route::get('/category/{id}/{url}', [FrontController::class, 'categoryDetail']);
 Route::get('/subcategory/{id}/{url}', [FrontController::class, 'subCategoryDetail']);

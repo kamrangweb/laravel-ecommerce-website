@@ -37,6 +37,10 @@
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Category">
+                            
+                            <a href="{{ route('category.all') }}">
+                                <input type="button" class="btn btn-light waves-effect waves-light text-danger" value="Cancel">
+                            </a>
                         </form>
                     </div>
                 </div>

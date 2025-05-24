@@ -74,6 +74,18 @@ class FrontController extends Controller
         return view('frontend.blog.blog_hepsi',compact('icerikHepsi','kategoriler'));
     }
 
+    public function shop()
+    {
+        $products = Urunler::where('durum', 1)->orderBy('sirano', 'ASC')->paginate(12);
+        $categories = Kategoriler::orderBy('kategori_adi', 'ASC')->get();
+        
+        return view('frontend.shop.index', compact('products', 'categories'));
+    }
 
+    public function categories()
+    {
+        $categories = Kategoriler::with('subcategories')->orderBy('kategori_adi', 'ASC')->get();
+        return view('frontend.categories.index', compact('categories'));
+    }
 
 }

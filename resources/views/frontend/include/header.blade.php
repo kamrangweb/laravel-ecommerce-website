@@ -9,22 +9,54 @@
                             <div class="logo">
                                 <a href="{{ url('/') }}" class="logo__black">
                                     <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Modern abstract shape -->
-                                        <path d="M20 10 L40 10 L40 40 L20 40 Z" fill="#1a1a1a"/>
-                                        <path d="M45 15 L65 15 L65 35 L45 35 Z" fill="#1a1a1a"/>
-                                        <path d="M70 20 L90 20 L90 30 L70 30 Z" fill="#1a1a1a"/>
-                                        <!-- Company name -->
-                                        <text x="100" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="#1a1a1a">CORP</text>
+                                        <!-- Gradient definitions -->
+                                        <defs>
+                                            <linearGradient id="bagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#FF7F50;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+                                            </linearGradient>
+                                            <linearGradient id="lightLines" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+                                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Shopping bag icon with gradient -->
+                                        <path d="M15 15 L35 15 L35 40 L15 40 Z" fill="url(#bagGradient)"/>
+                                        <path d="M20 15 L20 10 C20 5 25 5 25 10 L25 15" stroke="url(#bagGradient)" stroke-width="2"/>
+                                        <path d="M30 15 L30 10 C30 5 35 5 35 10 L35 15" stroke="url(#bagGradient)" stroke-width="2"/>
+                                        <!-- Light lines -->
+                                        <path d="M15 20 L35 20" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <path d="M15 25 L35 25" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <path d="M15 30 L35 30" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <!-- Store name with gradient -->
+                                        <text x="45" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="url(#bagGradient)">SHOP</text>
                                     </svg>
                                 </a>
                                 <a href="{{ url('/') }}" class="logo__white">
                                     <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Modern abstract shape -->
-                                        <path d="M20 10 L40 10 L40 40 L20 40 Z" fill="#ffffff"/>
-                                        <path d="M45 15 L65 15 L65 35 L45 35 Z" fill="#ffffff"/>
-                                        <path d="M70 20 L90 20 L90 30 L70 30 Z" fill="#ffffff"/>
-                                        <!-- Company name -->
-                                        <text x="100" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="#ffffff">CORP</text>
+                                        <!-- Gradient definitions -->
+                                        <defs>
+                                            <linearGradient id="whiteBagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#FF7F50;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+                                            </linearGradient>
+                                            <linearGradient id="whiteLightLines" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Shopping bag icon with gradient -->
+                                        <path d="M15 15 L35 15 L35 40 L15 40 Z" fill="url(#whiteBagGradient)"/>
+                                        <path d="M20 15 L20 10 C20 5 25 5 25 10 L25 15" stroke="url(#whiteBagGradient)" stroke-width="2"/>
+                                        <path d="M30 15 L30 10 C30 5 35 5 35 10 L35 15" stroke="url(#whiteBagGradient)" stroke-width="2"/>
+                                        <!-- Light lines -->
+                                        <path d="M15 20 L35 20" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <path d="M15 25 L35 25" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <path d="M15 30 L35 30" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <!-- Store name with gradient -->
+                                        <text x="45" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="url(#whiteBagGradient)">SHOP</text>
                                     </svg>
                                 </a>
                             </div>
@@ -101,22 +133,54 @@
                             <div class="nav-logo">
                                 <a href="{{ url('/') }}" class="logo__black">
                                     <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Modern abstract shape -->
-                                        <path d="M20 10 L40 10 L40 40 L20 40 Z" fill="#1a1a1a"/>
-                                        <path d="M45 15 L65 15 L65 35 L45 35 Z" fill="#1a1a1a"/>
-                                        <path d="M70 20 L90 20 L90 30 L70 30 Z" fill="#1a1a1a"/>
-                                        <!-- Company name -->
-                                        <text x="100" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="#1a1a1a">CORP</text>
+                                        <!-- Gradient definitions -->
+                                        <defs>
+                                            <linearGradient id="bagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#FF7F50;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+                                            </linearGradient>
+                                            <linearGradient id="lightLines" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+                                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Shopping bag icon with gradient -->
+                                        <path d="M15 15 L35 15 L35 40 L15 40 Z" fill="url(#bagGradient)"/>
+                                        <path d="M20 15 L20 10 C20 5 25 5 25 10 L25 15" stroke="url(#bagGradient)" stroke-width="2"/>
+                                        <path d="M30 15 L30 10 C30 5 35 5 35 10 L35 15" stroke="url(#bagGradient)" stroke-width="2"/>
+                                        <!-- Light lines -->
+                                        <path d="M15 20 L35 20" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <path d="M15 25 L35 25" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <path d="M15 30 L35 30" stroke="url(#lightLines)" stroke-width="1"/>
+                                        <!-- Store name with gradient -->
+                                        <text x="45" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="url(#bagGradient)">SHOP</text>
                                     </svg>
                                 </a>
                                 <a href="{{ url('/') }}" class="logo__white">
                                     <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Modern abstract shape -->
-                                        <path d="M20 10 L40 10 L40 40 L20 40 Z" fill="#ffffff"/>
-                                        <path d="M45 15 L65 15 L65 35 L45 35 Z" fill="#ffffff"/>
-                                        <path d="M70 20 L90 20 L90 30 L70 30 Z" fill="#ffffff"/>
-                                        <!-- Company name -->
-                                        <text x="100" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="#ffffff">CORP</text>
+                                        <!-- Gradient definitions -->
+                                        <defs>
+                                            <linearGradient id="whiteBagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#FF7F50;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+                                            </linearGradient>
+                                            <linearGradient id="whiteLightLines" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.2" />
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Shopping bag icon with gradient -->
+                                        <path d="M15 15 L35 15 L35 40 L15 40 Z" fill="url(#whiteBagGradient)"/>
+                                        <path d="M20 15 L20 10 C20 5 25 5 25 10 L25 15" stroke="url(#whiteBagGradient)" stroke-width="2"/>
+                                        <path d="M30 15 L30 10 C30 5 35 5 35 10 L35 15" stroke="url(#whiteBagGradient)" stroke-width="2"/>
+                                        <!-- Light lines -->
+                                        <path d="M15 20 L35 20" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <path d="M15 25 L35 25" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <path d="M15 30 L35 30" stroke="url(#whiteLightLines)" stroke-width="1"/>
+                                        <!-- Store name with gradient -->
+                                        <text x="45" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="url(#whiteBagGradient)">SHOP</text>
                                     </svg>
                                 </a>
                             </div>
@@ -170,6 +234,64 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+    /* Import Roboto font */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+    /* Apply Roboto to all elements */
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Navigation specific styles */
+    .navbar__wrap ul li a {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+
+    .menu__area.sticky-menu .navbar__wrap ul li a {
+        font-weight: 500;
+    }
+
+    /* Submenu styles */
+    .navbar__wrap ul li .sub-menu li a {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+
+    /* Mobile menu styles */
+    .mobile__menu .menu__outer ul li > a {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+    }
+
+    .mobile__menu .menu__outer ul li ul li a {
+        font-weight: 400;
+    }
+
+    /* Language switcher styles */
+    .menu-item-has-children .sub-menu a {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+
+    .menu-item-has-children > a {
+        font-weight: 500;
+    }
+
+    /* Logo text style */
+    .logo text {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+    }
+
+    /* Button styles */
+    .header__btn .btn {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+    }
+
+    /* Existing styles */
     .lang-flag {
         width: 20px;
         height: 15px;

@@ -5,77 +5,71 @@
 @section('main')
     <!-- Hero Section -->
     <section class="hero-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="hero-content">
-                        <h1 class="wow fadeInUp" data-wow-delay=".2s">Innovative Solutions for Your Business</h1>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">We help businesses transform their digital presence with cutting-edge technology and creative solutions.</p>
-                        <div class="hero-btn wow fadeInUp" data-wow-delay=".6s">
-                            <a href="{{ route('contact') }}" class="btn">Get Started</a>
-                            <a href="{{ url('/about') }}" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="{{ asset('frontend/assets/img/hero/hero-1.png') }}" alt="Hero Image">
+        <div class="hero-image">
+            <img src="{{ asset('frontend/assets/img/hero/hero-bg.jpg') }}" alt="Hero Background">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content text-center">
+                    <h1 class="display-4 fw-bold mb-4">Welcome to Our Store</h1>
+                    <p class="lead mb-5">Discover amazing products at unbeatable prices</p>
+                    <div class="hero-btn">
+                        <a href="{{ route('shop') }}" class="btn btn-light me-3">Shop Now</a>
+                        <a href="{{ route('categories') }}" class="btn btn-outline-light">Browse Categories</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-area section-padding">
+    <!-- Categories Section -->
+    <section class="categories-area section-padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center">
-                        <span class="sub-title">Our Services</span>
-                        <h2 class="title">What We Do</h2>
+                        <span class="sub-title">Shop by Category</span>
+                        <h2 class="title mb-3">Browse Our Categories</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @php
+                    $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
+                @endphp
+
+                @foreach ($categories as $category)
                 <div class="col-lg-4 col-md-6">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-laptop-code"></i>
+                    <div class="category-item">
+                        <div class="category-thumb">
+                            <a href="{{ url('category/'.$category->id.'/'.$category->category_slug) }}">
+                                <img src="{{ asset($category->category_image) }}" alt="{{ $category->category_name }}">
+                            </a>
                         </div>
-                        <h4>Web Development</h4>
-                        <p>Custom web solutions tailored to your business needs.</p>
+                        <div class="category-content">
+                            <h4 class="title">
+                                <a href="{{ url('category/'.$category->id.'/'.$category->category_slug) }}">
+                                    {{ $category->category_name }}
+                                </a>
+                            </h4>
+                            <p>{{ Str::limit($category->category_description, 100) }}</p>
+                            <a href="{{ url('category/'.$category->id.'/'.$category->category_slug) }}" class="btn btn-outline-primary align-items-center">
+                                Shop Now <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h4>Mobile Apps</h4>
-                        <p>Native and cross-platform mobile applications.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h4>Digital Marketing</h4>
-                        <p>Strategic marketing solutions to grow your business.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about-area section-padding bg-light">
+    <section class="about-area section-padding bg-light p-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="about-image">
-                        <img src="{{ asset('frontend/assets/img/about/about-1.jpg') }}" alt="About Image">
+                    <div class="about-image rounded">
+                        <img class="rounded-3" src="{{ asset('frontend/assets/img/about/about-1.jpg') }}" alt="About Image">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -100,9 +94,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
-                    <div class="section-title text-center">
-                        <span class="sub-title">Our Work</span>
-                        <h2 class="title">Recent Projects</h2>
+                    <div class="section-title text-center mt-5">
+                        <span class="sub-title">Our Products</span>
+                        <h2 class="title">Recent Products</h2>
                     </div>
                 </div>
             </div>

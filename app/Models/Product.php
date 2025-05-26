@@ -1,29 +1,28 @@
 <?php
 
-namespace ProductService\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    use HasFactory;
+
+    protected $connection = 'product_service';
+    
     protected $fillable = [
         'name',
         'description',
         'price',
-        'image_url',
-        'category',
+        'sku',
         'stock',
-        'is_featured'
+        'status'
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'stock' => 'integer',
-        'is_featured' => 'boolean'
+        'status' => 'boolean'
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 } 

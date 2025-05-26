@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'product_service' => [
+        'url' => env('PRODUCT_SERVICE_URL', 'http://localhost:8001'),
+        'cache_time' => env('PRODUCT_SERVICE_CACHE_TIME', 3600),
+    ],
+
 ];

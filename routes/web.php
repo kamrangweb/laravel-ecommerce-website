@@ -14,6 +14,7 @@ use App\Http\Controllers\Home\FrontController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\DB;
 
 // Contact form route
 Route::controller(MessageController::class)->group(function () {
@@ -21,9 +22,7 @@ Route::controller(MessageController::class)->group(function () {
     Route::post('/offer/form', 'offerForm')->name('offer.form');
 });
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
 
 // Admin Routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -155,5 +154,23 @@ Route::get('/blog', [FrontController::class, 'allBlogs']);
 
 // Language Switch Route
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
+Route::get('/test-pgsql', function () {
+    try {
+        $connection = DB::connection('pgsql');
+        $version = $connection->select('SELECT version()')[0]->version;
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'PostgreSQL bağlantısı başarılı!',
+            'version' => $version
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'PostgreSQL bağlantı hatası: ' . $e->getMessage()
+        ], 500);
+    }
+});
 
 require __DIR__.'/auth.php';

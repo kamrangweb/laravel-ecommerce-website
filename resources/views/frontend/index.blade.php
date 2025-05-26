@@ -63,6 +63,8 @@
         </div>
     </section>
 
+    @include('frontend.home.best_selling')
+
     <!-- About Section -->
     <section class="about-area section-padding bg-light p-5">
         <div class="container">

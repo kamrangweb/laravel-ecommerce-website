@@ -15,12 +15,15 @@ use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ContactController;
 
 // Contact form route
 Route::controller(MessageController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/offer/form', 'offerForm')->name('offer.form');
 });
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
 

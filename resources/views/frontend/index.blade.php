@@ -113,21 +113,90 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
-                    <div class="section-title text-center">
+                    <div class="section-title text-center mb-5">
                         <span class="sub-title">Testimonials</span>
                         <h2 class="title">What Our Clients Say</h2>
+                        <p class="text-muted">Discover why our clients love working with us</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="testimonials-slider">
-                        <div class="testimonial-item text-center">
+                <div class="col-lg-10 mx-auto">
+                    <div class="testimonials-carousel owl-carousel">
+                        <!-- Testimonial Item 1 -->
+                        <div class="testimonial-item">
                             <div class="testimonial-content">
-                                <p>"Working with this team has been an absolute pleasure. They delivered our project on time and exceeded our expectations."</p>
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">"Working with this team has been an absolute pleasure. They delivered our project on time and exceeded our expectations. Their attention to detail and commitment to quality is outstanding."</p>
                                 <div class="testimonial-author">
-                                    <h5>John Smith</h5>
-                                    <span>CEO, Tech Solutions</span>
+                                    <div class="author-image">
+                                        <img src="{{ asset('frontend/assets/img/testimonials/author-1.jpg') }}" alt="John Smith">
+                                    </div>
+                                    <div class="author-info">
+                                        <h5 class="author-name">John Smith</h5>
+                                        <span class="author-position">CEO, Tech Solutions</span>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Item 2 -->
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">"The level of professionalism and expertise demonstrated by the team is remarkable. They understood our needs perfectly and delivered a solution that transformed our business."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="{{ asset('frontend/assets/img/testimonials/author-2.jpg') }}" alt="Sarah Johnson">
+                                    </div>
+                                    <div class="author-info">
+                                        <h5 class="author-name">Sarah Johnson</h5>
+                                        <span class="author-position">Marketing Director, Innovate Inc</span>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Item 3 -->
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="testimonial-text">"I'm impressed by their innovative approach and technical expertise. The team went above and beyond to ensure our project's success. Highly recommended!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="{{ asset('frontend/assets/img/testimonials/author-3.jpg') }}" alt="Michael Brown">
+                                    </div>
+                                    <div class="author-info">
+                                        <h5 class="author-name">Michael Brown</h5>
+                                        <span class="author-position">CTO, Digital Solutions</span>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,15 +223,79 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-area section-padding bg-primary">
+    <!-- Contact Section -->
+    <section class="contact-area section-padding">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="cta-content text-center">
-                        <h2>Ready to Start Your Project?</h2>
-                        <p>Let's work together to bring your ideas to life.</p>
-                        <a href="{{ route('contact') }}" class="btn btn-light">Get in Touch</a>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-content">
+                        <div class="section-title">
+                            <span class="sub-title">Get in Touch</span>
+                            <h2 class="title">Let's Discuss Your Project</h2>
+                            <p class="text-muted">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-info-item">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Our Location</h5>
+                                    <p>123 Business Street, New York, USA</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Email Us</h5>
+                                    <p><a href="mailto:info@example.com">info@example.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Call Us</h5>
+                                    <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name*" required>
+                                        <div class="invalid-feedback">Please enter your name.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email*" required>
+                                        <div class="invalid-feedback">Please enter a valid email.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" name="phone" class="form-control" placeholder="Your Phone*" required>
+                                <div class="invalid-feedback">Please enter your phone number.</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" class="form-control" rows="5" placeholder="Your Message*" required></textarea>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane ms-2"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,11 @@
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/default.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+        <!-- Owl Carousel CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+        <!-- Custom Testimonials CSS -->
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/testimonials.css') }}">
     </head>
     <body>
 
@@ -152,5 +157,12 @@
 	});
 </script>
 <!-- boş olamaz no refresh -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Custom Testimonials JS -->
+    <script src="{{ asset('frontend/assets/js/testimonials.js') }}"></script>
     </body>
 </html>

@@ -2,6 +2,8 @@ vendor/* linguist-vendored
 node_modules/* linguist-vendored
 
 
+
+
 *.blade.php linguist-detectable=true
 *.php linguist-detectable=true
 *.js linguist-detectable=false

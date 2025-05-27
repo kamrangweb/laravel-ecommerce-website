@@ -1,9 +1,13 @@
+vendor/* linguist-vendored
+node_modules/* linguist-vendored
 
 
-# Mark build and dependency directories as vendored
-vendor/** linguist-vendored
-public/vendor/** linguist-vendored
-*.php diff=php
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
+*.blade.php linguist-detectable=true
+*.php linguist-detectable=true
+*.js linguist-detectable=false
+*.css linguist-detectable=false
+*.scss linguist-detectable=false
+*.html linguist-detectable=false
+node_modules/* linguist-vendored
+public/js/* linguist-vendored
+resources/js/* linguist-vendored

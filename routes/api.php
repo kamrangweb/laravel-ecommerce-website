@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OtpController;
 
+// Include product service routes
+// require_once __DIR__ . '/../../services/product-service/routes/api.php';
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -17,4 +20,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // OTP Routes
 Route::post('/otp/request', [OtpController::class, 'requestOtp']);
-Route::post('/otp/verify', [OtpController::class, 'verifyOtp']); 
+Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
+
+// Product Routes
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/{id}', [ProductController::class, 'show']);
+}); 

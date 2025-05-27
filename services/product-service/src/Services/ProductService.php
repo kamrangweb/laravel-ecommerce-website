@@ -3,7 +3,7 @@
 namespace Services\ProductService\Services;
 
 use Services\ProductService\Interfaces\ProductRepositoryInterface;
-use Services\ProductService\Models\Product;
+
 
 class ProductService
 {

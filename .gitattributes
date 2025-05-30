@@ -4,7 +4,7 @@ node_modules/* linguist-vendored
 
 
 
-*.blade.php linguist-detectable=true
+*.blade.php linguist-detectable=false
 *.php linguist-detectable=true
 *.js linguist-detectable=false
 *.css linguist-detectable=false

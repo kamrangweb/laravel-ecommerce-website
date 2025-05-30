@@ -1,14 +1,18 @@
 {
-    "name": "product-service/api",
-    "description": "Product Service API",
+    "name": "your-vendor/product-service",
+    "description": "Product Microservice",
     "type": "project",
-    "require": {
-        "php": "^8.1",
-        "ext-json": "*"
-    },
     "autoload": {
         "psr-4": {
             "ProductService\\": "src/"
         }
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
     }
 } 

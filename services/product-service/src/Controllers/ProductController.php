@@ -4,10 +4,12 @@ namespace ProductService\Controllers;
 
 class ProductController
 {
-    public function getFeaturedProducts()
+    private array $products;
+
+    public function __construct()
     {
-        // Demo products data
-        return [
+        // Initialize with demo products data
+        $this->products = [
             [
                 'id' => 1,
                 'name' => 'Premium Laptop',
@@ -71,32 +73,26 @@ class ProductController
         ];
     }
 
-    public function getAllProducts()
+    public function getAllProducts(): array
     {
-        // For now, return the same demo products
-        return $this->getFeaturedProducts();
+        return $this->products;
     }
 
-    public function getProduct($id)
+    public function getFeaturedProducts(): array
     {
-        // Demo product data
-        $products = [
-            1 => [
-                'id' => 1,
-                'name' => 'Premium Laptop',
-                'description' => 'High-performance laptop with the latest processor and graphics card.',
-                'price' => 1299.99,
-                'image_url' => 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853',
-                'category' => 'Electronics',
-                'stock' => 15,
-                'is_featured' => true
-            ]
-        ];
+        return array_filter($this->products, function($product) {
+            return $product['is_featured'] === true;
+        });
+    }
 
-        if (!isset($products[$id])) {
-            return ['error' => 'Product not found'];
+    public function getProduct(int $id): array
+    {
+        foreach ($this->products as $product) {
+            if ($product['id'] === $id) {
+                return $product;
+            }
         }
-
-        return $products[$id];
+        
+        return ['error' => 'Product not found'];
     }
 } 

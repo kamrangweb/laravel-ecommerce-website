@@ -1,0 +1,17 @@
+@echo off
+
+:: Get the directory where the batch file is located
+set "SCRIPT_DIR=%~dp0"
+
+:: Change to the product service directory
+cd /d "%SCRIPT_DIR%"
+
+:: Check if vendor directory exists, if not run composer install
+if not exist "vendor" (
+    echo Installing dependencies...
+    composer install
+)
+
+:: Start the PHP development server
+echo Starting Product Service on http://localhost:8001
+php -S localhost:8001 -t public 

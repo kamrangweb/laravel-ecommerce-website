@@ -17,7 +17,7 @@ class HakkimizdaController extends Controller
 
     public function Hakkimizda(){
         $hakkimizda = Hakkimizda::find(1);
-        return view('admin.anasayfa.hakkimizda_duzenle',compact('hakkimizda'));
+        return view('admin.anasayfa.about_edit',compact('hakkimizda'));
     }//function end
 
     public function HakkimizdaGuncelle(Request $request){

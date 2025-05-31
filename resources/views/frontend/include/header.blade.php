@@ -122,7 +122,7 @@
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
-                                <a href="{{ route('contact') }}" class="btn">{{ __('menu.contact_us') }}</a>
+                                <a href="{{ route('contact') }}" class="btn btn-primary rounded"><i class="fas fa-envelope me-2"></i>{{ __('menu.contact_us') }}</a>
                             </div>
                         </nav>
                     </div>
@@ -242,6 +242,12 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'Roboto', sans-serif;
     }
 
+    /* Global button hover effect */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+ 
     /* Navigation specific styles */
     .navbar__wrap ul li a {
         font-family: 'Roboto', sans-serif;

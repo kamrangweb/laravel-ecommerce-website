@@ -14,7 +14,7 @@ class FooterController extends Controller
 
     public function FooterDuzenle(){
         $footer = Footer::find(1);
-        return view('admin.anasayfa.footer_duzenle',compact('footer'));
+        return view('admin.anasayfa.footer_edit',compact('footer'));
     }//function end FooterGuncelle
    
    

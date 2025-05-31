@@ -18,7 +18,7 @@ class BannerController extends Controller
 
     public function HomeBanner(){
         $homebanner = Banner::find(1);
-        return view('admin.anasayfa.banner_duzenle',compact('homebanner'));
+        return view('admin.anasayfa.banner_edit',compact('homebanner'));
     }//function end
     
     public function BannerGuncelle(Request $request){

@@ -14,7 +14,7 @@ class AboutController extends Controller
     public function about()
     {
         $about = About::find(1);
-        return view('admin.anasayfa.hakkimizda_duzenle', compact('about'));
+        return view('admin.anasayfa.about_edit', compact('about'));
     }
 
     public function updateAbout(Request $request)

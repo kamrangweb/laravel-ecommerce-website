@@ -5553,3 +5553,134 @@ body.active-dark-mode {
         font-size: 14px;
     }
 }
+
+/* Testimonials Section Styles */
+.testimonials-area {
+    padding: 100px 0 150px;
+    background-color: #f8f9fa;
+}
+
+.testimonial-item {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 15px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.testimonial-content {
+    position: relative;
+}
+
+.testimonial-icon {
+    color: #FF714C;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.author-position {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rating {
+    color: #FF714C;
+}
+
+.rating i {
+    font-size: 14px;
+    margin-right: 2px;
+}
+
+/* Owl Carousel Custom Styles */
+.owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50% !important;
+    background: #fff !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: #333 !important;
+    font-size: 20px !important;
+    transition: all 0.3s ease;
+}
+
+.owl-nav button:hover {
+    background: #FF714C !important;
+    color: #fff !important;
+}
+
+.owl-nav button.owl-prev {
+    left: -20px;
+}
+
+.owl-nav button.owl-next {
+    right: -20px;
+}
+
+.owl-dots {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.owl-dot {
+    width: 10px;
+    height: 10px;
+    background: #ddd !important;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.owl-dot.active {
+    background: #FF714C !important;
+    transform: scale(1.2);
+}

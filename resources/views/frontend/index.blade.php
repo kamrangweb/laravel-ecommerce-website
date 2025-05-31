@@ -130,14 +130,14 @@
                                 <div class="testimonial-icon">
                                     <i class="fas fa-quote-left"></i>
                                 </div>
-                                <p class="testimonial-text">"Working with this team has been an absolute pleasure. They delivered our project on time and exceeded our expectations. Their attention to detail and commitment to quality is outstanding."</p>
+                                <p class="testimonial-text">"The team's expertise in web development is outstanding. They transformed our online presence and helped us achieve remarkable growth in our digital sales. Their attention to detail and commitment to excellence is truly impressive."</p>
                                 <div class="testimonial-author">
                                     <div class="author-image">
-                                        <img src="{{ asset('frontend/assets/img/testimonials/author-1.jpg') }}" alt="John Smith">
+                                        <img src="{{ asset('frontend/assets/img/testimonials/testimonial1.jpg') }}" alt="John Anderson">
                                     </div>
                                     <div class="author-info">
-                                        <h5 class="author-name">John Smith</h5>
-                                        <span class="author-position">CEO, Tech Solutions</span>
+                                        <h5 class="author-name">John Anderson</h5>
+                                        <span class="author-position">CEO, TechVision Inc</span>
                                         <div class="rating">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -156,14 +156,15 @@
                                 <div class="testimonial-icon">
                                     <i class="fas fa-quote-left"></i>
                                 </div>
-                                <p class="testimonial-text">"The level of professionalism and expertise demonstrated by the team is remarkable. They understood our needs perfectly and delivered a solution that transformed our business."</p>
+                                <p class="testimonial-text">"Working with this team has been a game-changer for our business. Their innovative solutions and professional approach helped us streamline our operations and increase customer satisfaction. Highly recommended!"</p>
                                 <div class="testimonial-author">
                                     <div class="author-image">
-                                        <img src="{{ asset('frontend/assets/img/testimonials/author-2.jpg') }}" alt="Sarah Johnson">
+
+                                        <img src="{{ asset('frontend/assets/img/testimonials/testimonial2.jpg') }}" alt="John Anderson">
                                     </div>
                                     <div class="author-info">
-                                        <h5 class="author-name">Sarah Johnson</h5>
-                                        <span class="author-position">Marketing Director, Innovate Inc</span>
+                                        <h5 class="author-name">David Mitchell</h5>
+                                        <span class="author-position">Marketing Director, Innovate Solutions</span>
                                         <div class="rating">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -182,14 +183,14 @@
                                 <div class="testimonial-icon">
                                     <i class="fas fa-quote-left"></i>
                                 </div>
-                                <p class="testimonial-text">"I'm impressed by their innovative approach and technical expertise. The team went above and beyond to ensure our project's success. Highly recommended!"</p>
+                                <p class="testimonial-text">"The level of professionalism and technical expertise demonstrated by the team is exceptional. They delivered our project ahead of schedule and exceeded our expectations. Their support team is always responsive and helpful."</p>
                                 <div class="testimonial-author">
                                     <div class="author-image">
-                                        <img src="{{ asset('frontend/assets/img/testimonials/author-3.jpg') }}" alt="Michael Brown">
+                                        <img src="{{ asset('frontend/assets/img/testimonials/testimonial3.jpg') }}" alt="Michael Chen">
                                     </div>
                                     <div class="author-info">
-                                        <h5 class="author-name">Michael Brown</h5>
-                                        <span class="author-position">CTO, Digital Solutions</span>
+                                        <h5 class="author-name">Michael Chen</h5>
+                                        <span class="author-position">CTO, Digital Innovations</span>
                                         <div class="rating">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>

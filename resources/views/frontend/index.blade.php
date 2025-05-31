@@ -64,6 +64,7 @@
     </section>
 
     @include('frontend.home.best_selling')
+    @include('frontend.home.favorites')
 
     <!-- About Section -->
     <section class="about-area section-padding bg-light p-5">

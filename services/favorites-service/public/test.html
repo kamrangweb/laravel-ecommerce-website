@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favourites API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"] { width: 100%; padding: 8px; }
+        button { padding: 10px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Favourites API Test</h1>
+        
+        <div class="form-group">
+            <h2>Get All Favourites</h2>
+            <button onclick="getAllFavourites()">Get All</button>
+        </div>
+
+        <div class="form-group">
+            <h2>Get Favourite by ID</h2>
+            <input type="number" id="get-id" placeholder="Enter ID">
+            <button onclick="getFavourite()">Get</button>
+        </div>
+
+        <div class="form-group">
+            <h2>Create Favourite</h2>
+            <input type="text" id="create-name" placeholder="Enter product name">
+            <button onclick="createFavourite()">Create</button>
+        </div>
+
+        <div class="form-group">
+            <h2>Update Favourite</h2>
+            <input type="number" id="update-id" placeholder="Enter ID">
+            <input type="text" id="update-name" placeholder="Enter new product name">
+            <button onclick="updateFavourite()">Update</button>
+        </div>
+
+        <div class="form-group">
+            <h2>Delete Favourite</h2>
+            <input type="number" id="delete-id" placeholder="Enter ID">
+            <button onclick="deleteFavourite()">Delete</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8003/api/favourites';
+
+        async function getAllFavourites() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                displayResult({ error: error.message });
+            }
+        }
+
+        async function getFavourite() {
+            const id = document.getElementById('get-id').value;
+            try {
+                const response = await fetch(`${API_URL}/${id}`);
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                displayResult({ error: error.message });
+            }
+        }
+
+        async function createFavourite() {
+            const name = document.getElementById('create-name').value;
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product_name: name })
+                });
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                displayResult({ error: error.message });
+            }
+        }
+
+        async function updateFavourite() {
+            const id = document.getElementById('update-id').value;
+            const name = document.getElementById('update-name').value;
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product_name: name })
+                });
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                displayResult({ error: error.message });
+            }
+        }
+
+        async function deleteFavourite() {
+            const id = document.getElementById('delete-id').value;
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                displayResult({ error: error.message });
+            }
+        }
+
+        function displayResult(data) {
+            document.getElementById('result').innerHTML = 
+                '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+    </script>
+</body>
+</html> 

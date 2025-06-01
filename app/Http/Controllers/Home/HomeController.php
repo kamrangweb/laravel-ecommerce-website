@@ -11,6 +11,6 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::orderBy('category_name', 'ASC')->limit(6)->get();
-        return view('frontend.index', compact('categories'));
+        return view('frontend.home', compact('categories'));
     }
 } 

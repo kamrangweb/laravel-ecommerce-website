@@ -27,10 +27,7 @@
                                 <img src="{{ $product['image_url'] }}" 
                                      alt="{{ $product['image_url'] }}">
                             </a>
-                            <!-- <a href="#">
-                                <img src="{{ asset('frontend/assets/img/placeholder.jpg') }}" 
-                                     alt="{{ $product['product_name'] }}">
-                            </a> -->
+                          
                         </div>
                         <div class="category-content">
                             <h4 class="title">

@@ -12,16 +12,19 @@ class Product extends Model
     protected $connection = 'product_service';
     
     protected $fillable = [
-        'name',
-        'description',
-        'price',
+        'product_name',
+        'product_thumbnail',
+        'short_description',
+        'selling_price',
+        'discount_price',
         'sku',
         'stock',
         'status'
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
+        'selling_price' => 'decimal:2',
+        'discount_price' => 'decimal:2',
         'stock' => 'integer',
         'status' => 'boolean'
     ];

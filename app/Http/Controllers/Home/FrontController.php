@@ -11,6 +11,7 @@ use App\Models\Altkategoriler;
 use App\Models\Urunler;
 use App\Models\BlogIcerik;
 use App\Models\Blogkategoriler;
+use App\Models\Product;
 
 
 
@@ -86,6 +87,56 @@ class FrontController extends Controller
     {
         $categories = Kategoriler::with('subcategories')->orderBy('kategori_adi', 'ASC')->get();
         return view('frontend.categories.index', compact('categories'));
+    }
+
+    public function productDetail($slug)
+    {
+        try {
+            // Log the incoming slug
+            \Log::info('Product Detail Request:', ['slug' => $slug]);
+            
+            // If the slug contains a hyphen, extract the ID from the end
+            if (strpos($slug, '-') !== false) {
+                $id = substr($slug, strrpos($slug, '-') + 1);
+            } else {
+                // If it's just a number, use it directly
+                $id = $slug;
+            }
+            
+            // Log the extracted ID
+            \Log::info('Extracted Product ID:', ['id' => $id]);
+            
+            // Validate that $id is a number
+            if (!is_numeric($id)) {
+                \Log::error('Invalid Product ID:', ['id' => $id]);
+                abort(404, 'Invalid product ID');
+            }
+            
+            // Debug the query
+            $product = Product::where('id', $id)->first();
+            
+            if (!$product) {
+                \Log::error('Product not found:', ['id' => $id]);
+                abort(404, 'Product not found');
+            }
+            
+            // Log the product data
+            \Log::info('Product Data:', [
+                'id' => $product->id,
+                'name' => $product->product_name,
+                'price' => $product->selling_price,
+                'discount_price' => $product->discount_price
+            ]);
+            
+            return view('frontend.product.detail', compact('product'));
+            
+        } catch (\Exception $e) {
+            \Log::error('Product Detail Error: ' . $e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString()
+            ]);
+            abort(404, 'Error loading product: ' . $e->getMessage());
+        }
     }
 
 }

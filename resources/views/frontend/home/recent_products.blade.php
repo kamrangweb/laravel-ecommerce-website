@@ -9,7 +9,16 @@
         <div class="product-item">
             <div class="product-thumb">
                 <a href="{{ url('product/'.Str::slug($product->product_name).'-'.$product->id) }}">
-                    <img src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name }}" class="img-fluid">
+                @if($product->product_image_url && file_exists(public_path($product->product_image_url)))
+                        <img src="{{ asset($product->product_image_url) }}" 
+                             alt="{{ $product->product_name ?? 'Product Image' }}" 
+                             class="img-fluid rounded shadow-sm w-50">
+                    @else
+                        <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" 
+                             alt="No Image Available" 
+                             class="img-fluid rounded shadow-sm w-50">
+                    @endif
+                    <!-- <img src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name }}" class="img-fluid"> -->
                 </a>
             </div>
             <div class="product-content">

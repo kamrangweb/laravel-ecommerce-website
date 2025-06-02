@@ -98,6 +98,8 @@ class FrontController extends Controller
             // If the slug contains a hyphen, extract the ID from the end
             if (strpos($slug, '-') !== false) {
                 $id = substr($slug, strrpos($slug, '-') + 1);
+                // Remove any negative sign from the ID
+                $id = str_replace('-', '', $id);
             } else {
                 // If it's just a number, use it directly
                 $id = $slug;
@@ -125,7 +127,9 @@ class FrontController extends Controller
                 'id' => $product->id,
                 'name' => $product->product_name,
                 'price' => $product->selling_price,
-                'discount_price' => $product->discount_price
+                'discount_price' => $product->discount_price,
+                'connection' => $product->getConnection()->getName(),
+                'database' => $product->getConnection()->getDatabaseName()
             ]);
             
             return view('frontend.product.detail', compact('product'));

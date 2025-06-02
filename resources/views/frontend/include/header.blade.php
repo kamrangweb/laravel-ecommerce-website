@@ -3,8 +3,8 @@
         <div class="container custom-container">
             <div class="row">
                 <div class="col-12">
-                    <div class="mobile__nav__toggler"><i class="fas fa-bars"></i></div>
-                    <div class="menu__wrap">
+                    <div class="mobile__nav__toggler" style="position: relative; z-index: 1000; color: #68666C;"><i class="fas fa-bars"></i></div>
+                    <div class="menu__wrap" style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 10px; margin: 10px 0; padding: 10px;">
                         <nav class="menu__nav">
                             <div class="logo">
                                 <a href="{{ url('/') }}" class="logo__black">
@@ -253,36 +253,43 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
         letter-spacing: 0.3px;
+        color: #68666C;
     }
 
     .menu__area.sticky-menu .navbar__wrap ul li a {
         font-weight: 500;
+        color: #68666C;
     }
 
     /* Submenu styles */
     .navbar__wrap ul li .sub-menu li a {
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
+        color: #68666C;
     }
 
     /* Mobile menu styles */
     .mobile__menu .menu__outer ul li > a {
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
+        color: #68666C;
     }
 
     .mobile__menu .menu__outer ul li ul li a {
         font-weight: 400;
+        color: #68666C;
     }
 
     /* Language switcher styles */
     .menu-item-has-children .sub-menu a {
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
+        color: #68666C;
     }
 
     .menu-item-has-children > a {
         font-weight: 500;
+        color: #68666C;
     }
 
     /* Logo text style */

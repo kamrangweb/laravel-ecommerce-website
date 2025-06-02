@@ -69,10 +69,14 @@
                     <div class="product-actions">
                         <div class="quantity-selector mb-3">
                             <label for="quantity">Quantity:</label>
-                            <div class="input-group" style="width: 150px;">
-                                <button class="btn btn-outline-secondary" type="button" id="decrease-qty">-</button>
+                            <div class="input-group quantity-control" style="width: 150px;">
+                                <button class="btn btn-outline-secondary quantity-btn" type="button" id="decrease-qty">
+                                    <i class="fas fa-minus"></i>
+                                </button>
                                 <input type="number" class="form-control text-center" id="quantity" value="1" min="1" max="{{ $product->product_qty }}">
-                                <button class="btn btn-outline-secondary" type="button" id="increase-qty">+</button>
+                                <button class="btn btn-outline-secondary quantity-btn" type="button" id="increase-qty">
+                                    <i class="fas fa-plus"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="action-buttons">
@@ -348,6 +352,62 @@
         .product-card:hover .product-title {
             color: #FF7F50;
         }
+
+        /* Quantity control styles */
+        .quantity-control {
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        .quantity-control .form-control {
+            border: none;
+            border-left: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+            border-radius: 0;
+            font-weight: 600;
+            color: #333;
+            padding: 0.5rem;
+        }
+
+        .quantity-control .form-control:focus {
+            box-shadow: none;
+            border-color: #dee2e6;
+        }
+
+        .quantity-btn {
+            border: none;
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #FF7F50;
+            color: white;
+        }
+
+        .quantity-btn:active {
+            transform: scale(0.95);
+        }
+
+        .quantity-btn:disabled {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Remove spinner buttons from number input */
+        .quantity-control input[type="number"]::-webkit-inner-spin-button,
+        .quantity-control input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .quantity-control input[type="number"] {
+            -moz-appearance: textfield;
+        }
     </style>
 
     <script>
@@ -359,10 +419,18 @@
             // const maxQuantity = {{ $product->product_qty }};
             const maxQuantity = 11;
 
+            // Update button states
+            function updateButtonStates() {
+                const value = parseInt(quantityInput.value);
+                decreaseBtn.disabled = value <= 1;
+                increaseBtn.disabled = value >= maxQuantity;
+            }
+
             decreaseBtn.addEventListener('click', function() {
                 let value = parseInt(quantityInput.value);
                 if (value > 1) {
                     quantityInput.value = value - 1;
+                    updateButtonStates();
                 }
             });
 
@@ -370,6 +438,7 @@
                 let value = parseInt(quantityInput.value);
                 if (value < maxQuantity) {
                     quantityInput.value = value + 1;
+                    updateButtonStates();
                 }
             });
 
@@ -380,7 +449,11 @@
                 } else if (value > maxQuantity) {
                     this.value = maxQuantity;
                 }
+                updateButtonStates();
             });
+
+            // Initialize button states
+            updateButtonStates();
         });
     </script>
 @endsection

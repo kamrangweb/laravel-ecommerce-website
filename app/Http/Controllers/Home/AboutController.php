@@ -11,6 +11,12 @@ use Image;
 
 class AboutController extends Controller
 {
+    public function aboutFront()
+    {
+        $about = About::find(1);
+        return view('frontend.home.home_about', compact('about'));
+    }
+
     public function about()
     {
         $about = About::find(1);
@@ -56,12 +62,6 @@ class AboutController extends Controller
 
             return redirect()->back()->with($notification);
         }
-    }
-
-    public function aboutFront()
-    {
-        $about = About::find(1);
-        return view('frontend.anasayfa.anasayfa_hakkimizda', compact('about'));
     }
 
     public function multipleImage()

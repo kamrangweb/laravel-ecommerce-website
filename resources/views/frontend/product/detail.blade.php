@@ -1,20 +1,19 @@
-@extends('frontend.main_master')
-@section('main')
-    <!-- Debug Information -->
-    {{-- @if(config('app.debug'))
-        <div class="container mt-3">
-            <div class="alert alert-info">
-                <h4>Debug Information</h4>
-                <pre>{{ print_r($product->toArray(), true) }}</pre>
-            </div>
-        </div>
-    @endif --}}
+@php
+    $recentProducts = App\Models\Product::orderBy('created_at', 'DESC')
+        ->limit(3)
+        ->get();
+@endphp
 
-    <div class="container py-5" style="margin-top: 100px;">
+@extends('frontend.main_master')
+
+@section('main')
+    <!-- Product Detail Section -->
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
-            <!-- Product Image Section -->
-            <div class="col-md-6">
-                <div class="product-image mb-4 d-flex justify-content-center align-items-center">
+            <!-- Product Images -->
+            <div class="col-lg-6">
+                <div class="product-images">
+                    <div class="main-image mb-4">
                     @if($product->product_image_url && file_exists(public_path($product->product_image_url)))
                         <img src="{{ asset($product->product_image_url) }}" 
                              alt="{{ $product->product_name ?? 'Product Image' }}" 
@@ -24,131 +23,295 @@
                              alt="No Image Available" 
                              class="img-fluid rounded shadow-sm w-50">
                     @endif
+                        <!-- <img src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name }}" class="img-fluid rounded"> -->
+                    </div>
+                    @if($product->product_images)
+                        <div class="thumbnail-images row g-2">
+                            @foreach(json_decode($product->product_images) as $image)
+                                <div class="col-3">
+                                    <img src="{{ asset($image) }}" alt="{{ $product->product_name }}" class="img-fluid rounded">
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
 
-            <!-- Product Details Section -->
-            <div class="col-md-6">
-                <div class="product-details">
-                    <!-- Product Name -->
-                    <h1 class="mb-3">{{ $product->product_name ?? 'Product Name' }}</h1>
-                    
-                    <!-- Price Section -->
-                    <div class="price-section mb-4">
-                        @if($product->discount_price && $product->selling_price > 0)
-                            <span class="text-decoration-line-through text-muted h4">${{ number_format($product->selling_price, 2) }}</span>
-                            <span class="text-danger fw-bold h3 ms-2">${{ number_format($product->discount_price, 2) }}</span>
-                            <span class="badge bg-danger ms-2">
-                                {{ round((($product->selling_price - $product->discount_price) / $product->selling_price) * 100) }}% OFF
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <h1 class="product-title mb-3">{{ $product->product_name }}</h1>
+                    <div class="product-price mb-3">
+                        <span class="current-price">${{ $product->selling_price }}</span>
+                        @if($product->discount_price)
+                            <span class="original-price">${{ $product->regular_price }}</span>
+                            <span class="discount-badge">{{ round((($product->regular_price - $product->discount_price) / $product->regular_price) * 100) }}% OFF</span>
+                        @endif
+                    </div>
+                    <div class="product-description mb-4">
+                        <p>{{ $product->short_description }}</p>
+                    </div>
+                    <div class="product-meta mb-4">
+                        <div class="meta-item">
+                            <span class="label">Category:</span>
+                            <span class="value">{{ $product->category ? $product->category->category_name : 'N/A' }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="label">Brand:</span>
+                            <span class="value">{{ $product->brand ? $product->brand->brand_name : 'N/A' }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="label">Stock:</span>
+                            <span class="value {{ $product->product_qty > 0 ? 'text-success' : 'text-danger' }}">
+                                {{ $product->product_qty > 0 ? 'In Stock' : 'Out of Stock' }}
                             </span>
-                        @elseif($product->selling_price > 0)
-                            <span class="fw-bold h3">${{ number_format($product->selling_price, 2) }}</span>
-                        @else
-                            <span class="fw-bold h3">Price not available</span>
-                        @endif
+                        </div>
                     </div>
-
-                    <!-- Stock Status -->
-                    <div class="stock-status mb-4">
-                        @if(isset($product->product_stock_quantity) && $product->product_stock_quantity > 0)
-                            <span class="badge bg-success">In Stock ({{ $product->product_stock_quantity }} available)</span>
-                        @else
-                            <span class="badge bg-danger">Out of Stock</span>
-                        @endif
-                    </div>
-
-                    <!-- Description -->
-                    <div class="description mb-4">
-                        <h4 class="mb-3">Description</h4>
-                        <p class="text-muted">{{ $product->product_description ?? 'No description available' }}</p>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="actions mb-4">
-                        @if(isset($product->product_stock_quantity) && $product->product_stock_quantity > 0)
-                            <button class="btn btn-primary btn-lg me-2">
+                    <div class="product-actions">
+                        <div class="quantity-selector mb-3">
+                            <label for="quantity">Quantity:</label>
+                            <div class="input-group" style="width: 150px;">
+                                <button class="btn btn-outline-secondary" type="button" id="decrease-qty">-</button>
+                                <input type="number" class="form-control text-center" id="quantity" value="1" min="1" max="{{ $product->product_qty }}">
+                                <button class="btn btn-outline-secondary" type="button" id="increase-qty">+</button>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary me-2" id="add-to-cart">
                                 <i class="fas fa-shopping-cart me-2"></i>Add to Cart
                             </button>
-                        @endif
-                        <button class="btn btn-outline-primary btn-lg me-2">
-                            <i class="fas fa-heart me-2"></i>Add to Wishlist
-                        </button>
-                        <button class="btn btn-outline-secondary btn-lg">
-                            <i class="fas fa-share-alt me-2"></i>Share
-                        </button>
-                    </div>
-
-                    <!-- Additional Info -->
-                    <div class="additional-info">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Product Information</h5>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p><strong>Category ID:</strong> {{ $product->category_id ?? 'N/A' }}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p><strong>Created:</strong> {{ \Carbon\Carbon::parse($product->created_at)->format('M d, Y') }}</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-outline-primary" id="add-to-wishlist">
+                                <i class="fas fa-heart me-2"></i>Add to Wishlist
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Additional Product Details Section -->
+        <!-- Product Details Tabs -->
         <div class="row mt-5">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <ul class="nav nav-tabs" id="productTabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">Description</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button" role="tab">Specifications</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content mt-4" id="productTabsContent">
-                            <div class="tab-pane fade show active" id="description" role="tabpanel">
-                                <h4>Product Description</h4>
-                                <p>{{ $product->product_description ?? 'No detailed description available.' }}</p>
-                            </div>
-                            <div class="tab-pane fade" id="specifications" role="tabpanel">
-                                <h4>Product Specifications</h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th>Product Name</th>
-                                                <td>{{ $product->product_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Stock Quantity</th>
-                                                <td>{{ $product->product_stock_quantity ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Category ID</th>
-                                                <td>{{ $product->category_id ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Created At</th>
-                                                <td>{{ \Carbon\Carbon::parse($product->created_at)->format('M d, Y H:i:s') }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Updated At</th>
-                                                <td>{{ \Carbon\Carbon::parse($product->updated_at)->format('M d, Y H:i:s') }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button" role="tab">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <div class="product-description">
+                            {!! $product->long_description !!}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="specifications" role="tabpanel">
+                        <div class="product-specifications">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <td>{{ $product->product_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Category</th>
+                                        <td>{{ $product->category ? $product->category->category_name : 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Brand</th>
+                                        <td>{{ $product->brand ? $product->brand->brand_name : 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Stock</th>
+                                        <td>{{ $product->product_qty }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <div class="product-reviews">
+                            <!-- Reviews content will go here -->
+                            <p>No reviews yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="section-title mb-4">Related Products</h3>
+                <div class="row">
+                    @foreach($recentProducts as $relatedProduct)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="{{ asset($relatedProduct->product_thumbnail) }}" alt="{{ $relatedProduct->product_name }}" class="img-fluid">
+                                </div>
+                                <div class="product-info p-3">
+                                    <h4 class="product-title">
+                                        <a href="{{ url('product/'.$relatedProduct->id.'/'.$relatedProduct->product_slug) }}">
+                                            {{ $relatedProduct->product_name }}
+                                        </a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span class="current-price">${{ $relatedProduct->selling_price }}</span>
+                                        @if($relatedProduct->discount_price)
+                                            <span class="original-price">${{ $relatedProduct->regular_price }}</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .product-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FF7F50;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .discount-badge {
+            background: #FF7F50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .product-meta {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .meta-item {
+            margin-bottom: 10px;
+        }
+
+        .meta-item .label {
+            font-weight: 600;
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-card .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card .product-title a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .product-card .product-price {
+            margin-top: 10px;
+        }
+
+        .nav-tabs .nav-link {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #FF7F50;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            background: #fff;
+        }
+
+        .quantity-selector .input-group {
+            width: 150px;
+        }
+
+        .quantity-selector input {
+            text-align: center;
+        }
+
+        .action-buttons .btn {
+            padding: 10px 20px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInput = document.getElementById('quantity');
+            const decreaseBtn = document.getElementById('decrease-qty');
+            const increaseBtn = document.getElementById('increase-qty');
+            const maxQuantity = {{ $product->product_qty }};
+
+            decreaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+
+            increaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value < maxQuantity) {
+                    quantityInput.value = value + 1;
+                }
+            });
+
+            quantityInput.addEventListener('change', function() {
+                let value = parseInt(this.value);
+                if (value < 1) {
+                    this.value = 1;
+                } else if (value > maxQuantity) {
+                    this.value = maxQuantity;
+                }
+            });
+        });
+    </script>
 @endsection 

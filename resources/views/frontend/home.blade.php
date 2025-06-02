@@ -83,32 +83,6 @@
     @include('frontend.home.best_selling')
     @include('frontend.home.favorites')
 
-    <!-- About Section -->
-    <section class="about-area section-padding bg-light p-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-image rounded">
-                        <img class="rounded-3" src="{{ asset('frontend/assets/img/about/about-1.jpg') }}" alt="About Image">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <span class="sub-title">About Us</span>
-                        <h2 class="title">Your Trusted Technology Partner</h2>
-                        <p>With years of experience in the industry, we've helped numerous businesses achieve their digital goals. Our team of experts is dedicated to delivering high-quality solutions that drive results.</p>
-                        <ul class="about-list">
-                            <li><i class="fas fa-check"></i> Expert Team</li>
-                            <li><i class="fas fa-check"></i> Quality Service</li>
-                            <li><i class="fas fa-check"></i> 24/7 Support</li>
-                        </ul>
-                        <a href="{{ url('/about') }}" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Testimonials Section -->
     <section class="testimonials-area section-padding bg-light">
         <div class="container">
@@ -159,7 +133,6 @@
                                 <p class="testimonial-text">"Working with this team has been a game-changer for our business. Their innovative solutions and professional approach helped us streamline our operations and increase customer satisfaction. Highly recommended!"</p>
                                 <div class="testimonial-author">
                                     <div class="author-image">
-
                                         <img src="{{ asset('frontend/assets/img/testimonials/testimonial2.jpg') }}" alt="John Anderson">
                                     </div>
                                     <div class="author-info">

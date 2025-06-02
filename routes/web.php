@@ -24,6 +24,20 @@ Route::controller(MessageController::class)->group(function () {
 
 Route::get('/', [App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
 
+// Front route
+Route::get('/shop', [FrontController::class, 'shop'])->name('shop');
+Route::get('/categories', [FrontController::class, 'categories'])->name('categories');
+Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('product.detail');
+Route::get('/category/{id}/{url}', [FrontController::class, 'categoryDetail']);
+Route::get('/subcategory/{id}/{url}', [FrontController::class, 'subCategoryDetail']);
+Route::get('/post/{id}/{url}', [FrontController::class, 'contentDetail']);
+Route::get('/blog/{id}/{url}', [FrontController::class, 'categoryDetail']);
+Route::get('/blog', [FrontController::class, 'allBlogs']);
+Route::get('/about', [AboutController::class, 'aboutFront'])->name('home.about');
+
+// Language Switch Route
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
 // Admin Routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -51,7 +65,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(AboutController::class)->group(function () {
         Route::get('/about/edit', 'about')->name('about');
         Route::post('/about/update', 'updateAbout')->name('about.update');
-        Route::get('/about', 'aboutFront')->name('home.about');
         Route::get('/multiple/image', 'multipleImage')->name('multiple.image');
         Route::post('/multiple/form', 'multipleForm')->name('multiple.image.form');
         Route::get('/multiple/list', 'multipleList')->name('multiple.list');
@@ -141,19 +154,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/role/permission/update/{id}', 'updateRolePermission')->name('role.permission.update');
     });
 });
-
-// Front route
-Route::get('/shop', [FrontController::class, 'shop'])->name('shop');
-Route::get('/categories', [FrontController::class, 'categories'])->name('categories');
-Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('product.detail');
-Route::get('/category/{id}/{url}', [FrontController::class, 'categoryDetail']);
-Route::get('/subcategory/{id}/{url}', [FrontController::class, 'subCategoryDetail']);
-Route::get('/post/{id}/{url}', [FrontController::class, 'contentDetail']);
-Route::get('/blog/{id}/{url}', [FrontController::class, 'categoryDetail']);
-Route::get('/blog', [FrontController::class, 'allBlogs']);
-
-// Language Switch Route
-Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 Route::get('/test-pgsql', function () {
     try {

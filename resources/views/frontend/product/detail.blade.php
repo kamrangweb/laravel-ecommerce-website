@@ -8,22 +8,21 @@
 
 @section('main')
     <!-- Product Detail Section -->
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 300px;">
         <div class="row">
             <!-- Product Images -->
             <div class="col-lg-6">
                 <div class="product-images">
-                    <div class="main-image mb-4">
-                    @if($product->product_image_url && file_exists(public_path($product->product_image_url)))
-                        <img src="{{ asset($product->product_image_url) }}" 
-                             alt="{{ $product->product_name ?? 'Product Image' }}" 
-                             class="img-fluid rounded shadow-sm w-50">
-                    @else
-                        <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" 
-                             alt="No Image Available" 
-                             class="img-fluid rounded shadow-sm w-50">
-                    @endif
-                        <!-- <img src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name }}" class="img-fluid rounded"> -->
+                    <div class="main-image mb-4 d-flex justify-content-center align-items-center">
+                        @if($product->product_image_url && file_exists(public_path($product->product_image_url)))
+                            <img src="{{ asset($product->product_image_url) }}" 
+                                 alt="{{ $product->product_name ?? 'Product Image' }}" 
+                                 class="img-fluid rounded shadow-sm w-50">
+                        @else
+                            <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" 
+                                 alt="No Image Available" 
+                                 class="img-fluid rounded shadow-sm w-50">
+                        @endif
                     </div>
                     @if($product->product_images)
                         <div class="thumbnail-images row g-2">
@@ -144,7 +143,7 @@
         </div>
 
         <!-- Related Products -->
-        <div class="row mt-5">
+        <div class="row mt-5 mb-5">
             <div class="col-12">
                 <h3 class="section-title mb-4">Related Products</h3>
                 <div class="row">
@@ -152,7 +151,11 @@
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <img src="{{ asset($relatedProduct->product_thumbnail) }}" alt="{{ $relatedProduct->product_name }}" class="img-fluid">
+                                    @if($relatedProduct->product_thumbnail && file_exists(public_path($relatedProduct->product_thumbnail)))
+                                        <img src="{{ asset($relatedProduct->product_thumbnail) }}" alt="{{ $relatedProduct->product_name }}" class="img-fluid">
+                                    @else
+                                        <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" alt="No Image Available" class="img-fluid">
+                                    @endif
                                 </div>
                                 <div class="product-info p-3">
                                     <h4 class="product-title">
@@ -224,6 +227,9 @@
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
+            background: #fff;
+            position: relative;
+            z-index: 1;
         }
 
         .product-card:hover {
@@ -280,6 +286,40 @@
 
         .action-buttons .btn {
             padding: 10px 20px;
+        }
+
+        .main-image {
+            min-height: 300px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .main-image img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        /* Update container styles */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                /* Mobile styles if needed */
+            }
+        }
+
+        /* Add margin to related products section */
+        .row.mt-5.mb-5 {
+            margin-bottom: 100px !important;
+        }
+
+        @media (max-width: 768px) {
+            .row.mt-5.mb-5 {
+                margin-bottom: 150px !important;
+            }
         }
     </style>
 

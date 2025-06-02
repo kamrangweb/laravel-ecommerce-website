@@ -61,8 +61,8 @@
                         </div>
                         <div class="meta-item">
                             <span class="label">Stock:</span>
-                            <span class="value {{ $product->product_qty > 0 ? 'text-success' : 'text-danger' }}">
-                                {{ $product->product_qty > 0 ? 'In Stock' : 'Out of Stock' }}
+                            <span class="value {{ $product->product_stock_quantity > 0 ? 'text-success' : 'text-danger' }}">
+                                {{ $product->product_stock_quantity > 0 ? 'In Stock' : 'Out of Stock' }}
                             </span>
                         </div>
                     </div>
@@ -105,6 +105,7 @@
                 <div class="tab-content p-4 border border-top-0 rounded-bottom">
                     <div class="tab-pane fade show active" id="description" role="tabpanel">
                         <div class="product-description">
+                            {!! $product->product_description !!}
                             {!! $product->long_description !!}
                         </div>
                     </div>
@@ -146,30 +147,30 @@
         <div class="row mt-5 mb-5">
             <div class="col-12">
                 <h3 class="section-title mb-4">Related Products</h3>
-                <div class="row">
+                <div class="row" id="relatedProducts">
                     @foreach($recentProducts as $relatedProduct)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="product-card">
-                                <div class="product-image">
-                                    @if($relatedProduct->product_thumbnail && file_exists(public_path($relatedProduct->product_thumbnail)))
-                                        <img src="{{ asset($relatedProduct->product_thumbnail) }}" alt="{{ $relatedProduct->product_name }}" class="img-fluid">
-                                    @else
-                                        <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" alt="No Image Available" class="img-fluid">
-                                    @endif
-                                </div>
-                                <div class="product-info p-3">
-                                    <h4 class="product-title">
-                                        <a href="{{ url('product/'.$relatedProduct->id.'/'.$relatedProduct->product_slug) }}">
-                                            {{ $relatedProduct->product_name }}
-                                        </a>
-                                    </h4>
-                                    <div class="product-price">
-                                        <span class="current-price">${{ $relatedProduct->selling_price }}</span>
-                                        @if($relatedProduct->discount_price)
-                                            <span class="original-price">${{ $relatedProduct->regular_price }}</span>
+                                <a href="{{ url('product/'.Str::slug($relatedProduct->product_name).'-'.$relatedProduct->id) }}" class="text-decoration-none">
+                                    <div class="product-image">
+                                        @if($relatedProduct->product_thumbnail && file_exists(public_path($relatedProduct->product_thumbnail)))
+                                            <img src="{{ asset($relatedProduct->product_thumbnail) }}" alt="{{ $relatedProduct->product_name }}" class="img-fluid">
+                                        @else
+                                            <img src="{{ asset('frontend/assets/img/images/product-demo.jpg') }}" alt="No Image Available" class="img-fluid">
                                         @endif
                                     </div>
-                                </div>
+                                    <div class="product-info p-3">
+                                        <h4 class="product-title">
+                                            {{ $relatedProduct->product_name }}
+                                        </h4>
+                                        <div class="product-price">
+                                            <span class="current-price">${{ $relatedProduct->selling_price }}</span>
+                                            @if($relatedProduct->discount_price)
+                                                <span class="original-price">${{ $relatedProduct->regular_price }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     @endforeach
@@ -313,22 +314,50 @@
 
         /* Add margin to related products section */
         .row.mt-5.mb-5 {
-            margin-bottom: 100px !important;
+            margin-bottom: 300px !important;
         }
 
         @media (max-width: 768px) {
             .row.mt-5.mb-5 {
-                margin-bottom: 150px !important;
+                margin-bottom: 400px !important;
             }
+        }
+
+        /* Add styles for product card hover */
+        .product-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .product-card .product-title {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card:hover .product-title {
+            color: #FF7F50;
         }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Quantity input handling
             const quantityInput = document.getElementById('quantity');
             const decreaseBtn = document.getElementById('decrease-qty');
             const increaseBtn = document.getElementById('increase-qty');
-            const maxQuantity = {{ $product->product_qty }};
+            // const maxQuantity = {{ $product->product_qty }};
+            const maxQuantity = 11;
 
             decreaseBtn.addEventListener('click', function() {
                 let value = parseInt(quantityInput.value);
@@ -354,4 +383,4 @@
             });
         });
     </script>
-@endsection 
+@endsection

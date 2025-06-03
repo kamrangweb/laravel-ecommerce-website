@@ -39,7 +39,7 @@ Route::get('/about', [AboutController::class, 'aboutFront'])->name('home.about')
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 // Admin Routes
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index');
     })->name('dashboard');

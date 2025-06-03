@@ -1,39 +1,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
+<section>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Profile Image</h4>
+            
+            <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
 
-                <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
-                    @csrf
-                    @method('patch')
-
-                    <!-- end row -->
-                    <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2">Resim</label>
-                        <div class="col-sm-10">
-                            <input type="file" name="resim" id="resim">
-                        </div>
+                <div class="row mb-3">
+                    <label for="resim" class="col-sm-2 col-form-label">Profile Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="resim" id="resim" class="form-control">
+                        @error('resim')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+                </div>
 
-                    <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2"></label>
-                        <div class="col-sm-10">
-                            <img class="rounded avatar-lg" src="{{ (!empty(Auth::user()->resim)) ? url('upload/admin/'.Auth::user()->resim): url('upload/resim-yok.png') }}" alt="" id="resimGoster">
-                        </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Current Image</label>
+                    <div class="col-sm-10">
+                        <img class="rounded avatar-lg" src="{{ (!empty(Auth::user()->resim)) ? url('upload/admin/'.Auth::user()->resim): url('upload/resim-yok.png') }}" alt="Profile Image" id="resimGoster">
                     </div>
+                </div>
 
-                    <label for="example-text-input" class="col-sm-2"></label>
-                    <input type="submit" class="btn btn-info bg-dark" value="Resim Güncelle">
-                </form>
-
-
-            </div>
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Update Image</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div> <!-- end col -->
-</div>
-
+    </div>
+</section>
 
 <script type="text/javascript">
     $(document).ready(function(){

@@ -26,7 +26,7 @@
         <!-- Products grid -->
         <div class="col-lg-9">
             <div class="row">
-                @foreach($products as $product)
+                @foreach($products->where('product_status', true) as $product)
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
                             <img src="{{ asset($product->urun_resim) }}" class="card-img-top" alt="{{ $product->urun_adi }}">

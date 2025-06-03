@@ -21,13 +21,13 @@ class Product extends Model
         'discount_price',
         'product_sku',
         'product_stock_quantity',
-        'status'
+        'product_status'
     ];
 
     protected $casts = [
         'selling_price' => 'decimal:2',
         'discount_price' => 'decimal:2',
         'stock' => 'integer',
-        'status' => 'boolean'
+        'product_status' => 'boolean'
     ];
 } 

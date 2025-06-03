@@ -1,5 +1,6 @@
 @php
-    $recentProducts = App\Models\Product::orderBy('created_at', 'DESC')
+    $recentProducts = App\Models\Product::where('product_status', true)
+        ->orderBy('created_at', 'DESC')
         ->limit(3)
         ->get();
 @endphp

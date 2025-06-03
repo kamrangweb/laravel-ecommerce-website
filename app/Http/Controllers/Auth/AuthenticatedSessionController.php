@@ -42,16 +42,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $mesaj = array(
+            'notification' => 'Logout successful.',
+            'alert-type' => 'success'
+        );
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-        
-        $mesaj = array(
-            'notification' => 'Logout successful.',
-            'alert-type' => 'info'
-        );
 
         return redirect('/login')->with($mesaj);
     }

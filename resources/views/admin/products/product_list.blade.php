@@ -46,7 +46,7 @@
                                 <td>{{ $product->discount_price }}</td>
                                 <td>{{ $product->product_stock_quantity }}</td>
                                 <td>
-                                    <input class="product-status" type="checkbox" id="{{ $product->id }}" data-id="{{ $product->id }}" switch="info" {{ $product->status ? 'checked' : ''}}>
+                                    <input class="product-status" type="checkbox" id="{{ $product->id }}" data-id="{{ $product->id }}" switch="info" {{ $product->product_status ? 'checked' : ''}}>
                                     <label for="{{ $product->id }}" data-on-label="Yes" data-off-label="No"></label>
                                 </td>
                                 <td>
@@ -76,6 +76,7 @@
         $('.product-status').change(function() {
             var productId = $(this).data('id');
             var status = $(this).prop('checked') ? 1 : 0;
+            var checkbox = $(this);
             
             $.ajax({
                 url: "{{ route('product.status') }}",
@@ -86,9 +87,15 @@
                     status: status
                 },
                 success: function(response) {
-                    toastr.success('Product status updated successfully');
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else {
+                        checkbox.prop('checked', !status);
+                        toastr.error(response.message);
+                    }
                 },
                 error: function(xhr) {
+                    checkbox.prop('checked', !status);
                     toastr.error('Error updating product status');
                 }
             });

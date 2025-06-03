@@ -159,24 +159,24 @@
 
 
     <script>
-
         $(function() {
-            $('.urunler').change(function(){
-                // alert('deyis');
-                var durum = $(this).prop('checked') == true ? 1 : 0;
-                var urun_id = $(this).data('id');
+            $('.product-status').change(function(){
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var id = $(this).data('id');
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     dataType: "json",
-                    url: "/urun/durum",
-                    data: {'durum': durum, 'urun_id': urun_id},
+                    url: "{{ route('product.status') }}",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'status': status,
+                        'id': id
+                    },
                     success: function(data){
-                        console.log(data.success);
+                        toastr.success(data.success);
                     }
-
                 });
             });
-            
         });
     </script>
     <!--  boş olamaz validate *--->

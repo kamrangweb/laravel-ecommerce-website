@@ -19,11 +19,21 @@ class ProductController extends Controller
     
     public function productStatus(Request $request)
     {
-        $product = Product::find($request->product_id);
-        $product->status = $request->status;
-        $product->save();
+        try {
+            $product = Product::findOrFail($request->id);
+            $product->product_status = $request->status;
+            $product->save();
 
-        return response()->json(['success' => 'Successful']);
+            return response()->json([
+                'success' => true,
+                'message' => 'Product status updated successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating product status'
+            ], 500);
+        }
     }
     
     public function addProduct(Request $request)
@@ -57,12 +67,11 @@ class ProductController extends Controller
         Product::create([
             'product_name' => $request->product_name,
             'product_thumbnail' => $imagePath,
-            // 'short_description' => $request->short_description,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
-            // 'sku' => $request->sku,
+            'product_sku' => $request->sku,
             'product_stock_quantity' => $request->stock,
-            // 'status' => $request->status ?? 1,
+            'product_status' => true,
         ]);
 
         $notification = array(
@@ -98,12 +107,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($productId);
         $data = [
             'product_name' => $request->product_name,
-            // 'short_description' => $request->short_description,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'product_sku' => $request->sku,
             'product_stock_quantity' => $request->stock,
-            // 'status' => $request->status ?? 1,
         ];
 
         if($request->file('product_thumbnail')) {

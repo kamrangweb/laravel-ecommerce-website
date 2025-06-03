@@ -17,14 +17,14 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2">Image</label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="resim" id="resim" class="form-control">
+                                    <input type="file" name="image" id="image" class="form-control">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2"></label>
                                 <div class="col-sm-10">
-                                    <img class="rounded avatar-lg" src="{{ (!empty($homebanner->resim)) ? url($homebanner->resim): url('upload/no-image.png') }}" alt="" id="resimGoster">
+                                    <img class="rounded avatar-lg" src="{{ (!empty($homebanner->image)) ? url($homebanner->image): url('upload/no-image.png') }}" alt="" id="imagePreview">
                                 </div>
                             </div>
 
@@ -39,10 +39,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#resim').change(function(e){
+        $('#image').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-                $('#resimGoster').attr('src',e.target.result);
+                $('#imagePreview').attr('src',e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
         });

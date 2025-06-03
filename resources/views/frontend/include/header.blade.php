@@ -64,26 +64,6 @@
                                 <ul class="navigation">
                                     <li class="active"><a href="{{ url('/') }}">{{ __('menu.home') }}</a></li>
                                     <li><a href="{{ url('/about') }}">{{ __('menu.about') }}</a></li>
-
-                                    @php
-                                        $categories = App\Models\Category::orderBy('category_name','ASC')->limit(2)->get();
-                                    @endphp
-
-                                    @foreach ($categories as $category)
-                                        <li class="menu-item-has-children">
-                                            <a href="{{ url('category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a>
-                                            @php
-                                                $subcategories = App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
-                                            @endphp
-                                            
-                                            <ul class="sub-menu">
-                                                @foreach ($subcategories as $subcategory)
-                                                    <li><a href="{{ url('subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    @endforeach
-
                                     <li class="menu-item-has-children">
                                         <a href="{{url('/blog')}}">{{ __('menu.blog') }}</a>
                                         <ul class="sub-menu">

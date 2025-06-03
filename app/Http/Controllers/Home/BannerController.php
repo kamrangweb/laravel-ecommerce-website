@@ -18,51 +18,51 @@ class BannerController extends Controller
 
     public function HomeBanner(){
         $homebanner = Banner::find(1);
-        return view('admin.anasayfa.banner_edit',compact('homebanner'));
+        return view('admin.homepage.banner_edit',compact('homebanner'));
     }//function end
     
     public function BannerGuncelle(Request $request){
         $banner_id = $request->id;
 
-        if($request->file('resim')){
-            $resim = $request->file('resim');
-            $resimadi = hexdec(uniqid()).'.'.$resim->getClientOriginalExtension();
+        if($request->file('image')){
+            $image = $request->file('image');
+            $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             
             // Store the image in the public directory
-            $resim->move(public_path('upload/banner'), $resimadi);
+            $image->move(public_path('upload/banner'), $imageName);
             
-            $resim_kaydet = 'upload/banner/'.$resimadi;
+            $imagePath = 'upload/banner/'.$imageName;
 
             Banner::findOrFail($banner_id)->update([
-                'baslik' => $request->baslik,
-                'alt_baslik' => $request->alt_baslik,
+                'title' => $request->title,
+                'subtitle' => $request->subtitle,
                 'url' => $request->url,
                 'video_url' => $request->video_url,
-                'resim' => $resim_kaydet,
+                'image' => $imagePath,
             ]);
 
-            $mesaj = array(
-                'bildirim' => 'Banner başarıyla güncellendi.',
+            $message = array(
+                'notification' => 'Banner updated successfully.',
                 'alert-type' => 'success'
             );
     
-            return Redirect()->back()->with($mesaj);
+            return Redirect()->back()->with($message);
         }
 
         // If no image is uploaded, update without image
         Banner::findOrFail($banner_id)->update([
-            'baslik' => $request->baslik,
-            'alt_baslik' => $request->alt_baslik,
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
             'url' => $request->url,
             'video_url' => $request->video_url,
         ]);
 
-        $mesaj = array(
-            'bildirim' => 'Banner başarıyla güncellendi.',
+        $message = array(
+            'notification' => 'Banner updated successfully.',
             'alert-type' => 'success'
         );
 
-        return Redirect()->back()->with($mesaj);
+        return Redirect()->back()->with($message);
     }//function end
 
     public function bannerText()
@@ -82,50 +82,50 @@ class BannerController extends Controller
         $banner_id = $request->id;
 
         Banner::findOrFail($banner_id)->update([
-            'baslik' => $request->baslik,
-            'alt_baslik' => $request->alt_baslik,
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
             'url' => $request->url,
             'video_url' => $request->video_url,
         ]);
 
-        $mesaj = array(
-            'bildirim' => 'Banner text başarıyla güncellendi.',
+        $message = array(
+            'notification' => 'Banner text updated successfully.',
             'alert-type' => 'success'
         );
 
-        return Redirect()->back()->with($mesaj);
+        return Redirect()->back()->with($message);
     }
 
     public function updateBannerImage(Request $request)
     {
         $banner_id = $request->id;
 
-        if($request->file('resim')){
-            $resim = $request->file('resim');
-            $resimadi = hexdec(uniqid()).'.'.$resim->getClientOriginalExtension();
+        if($request->file('image')){
+            $image = $request->file('image');
+            $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             
             // Store the image in the public directory
-            $resim->move(public_path('upload/banner'), $resimadi);
+            $image->move(public_path('upload/banner'), $imageName);
             
-            $resim_kaydet = 'upload/banner/'.$resimadi;
+            $imagePath = 'upload/banner/'.$imageName;
 
             Banner::findOrFail($banner_id)->update([
-                'resim' => $resim_kaydet,
+                'image' => $imagePath,
             ]);
 
-            $mesaj = array(
-                'bildirim' => 'Banner image başarıyla güncellendi.',
+            $message = array(
+                'notification' => 'Banner image updated successfully.',
                 'alert-type' => 'success'
             );
     
-            return Redirect()->back()->with($mesaj);
+            return Redirect()->back()->with($message);
         }
 
-        $mesaj = array(
-            'bildirim' => 'Lütfen bir resim seçin.',
+        $message = array(
+            'notification' => 'Please select an image.',
             'alert-type' => 'error'
         );
 
-        return Redirect()->back()->with($mesaj);
+        return Redirect()->back()->with($message);
     }
 }//class end

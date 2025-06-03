@@ -15,13 +15,13 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="baslik" placeholder="Title" id="example-text-input" value="{{ $homebanner->baslik }}">
+                                    <input class="form-control" type="text" name="title" placeholder="Title" id="example-text-input" value="{{ $homebanner->title }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Subtitle</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="alt_baslik" placeholder="Subtitle" id="example-text-input" value="{{ $homebanner->alt_baslik }}">
+                                    <input class="form-control" type="text" name="subtitle" placeholder="Subtitle" id="example-text-input" value="{{ $homebanner->subtitle }}">
                                 </div>
                             </div>
                             <div class="row mb-3">

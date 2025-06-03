@@ -3,23 +3,7 @@
     {{ implode('', $errors->all('<div>:message</div>')) }}
 @endif
 @section('main')
-    <!-- Hero Section -->
-    <section class="hero-area">
-        <div class="hero-image">
-            <img src="{{ asset('frontend/assets/img/hero/hero-bg.jpg') }}" alt="Hero Background">
-            <div class="hero-overlay"></div>
-            <div class="container">
-                <div class="hero-content text-center">
-                    <h1 class="display-4 fw-bold mb-4">Welcome to Our Store</h1>
-                    <p class="lead mb-5">Discover amazing products at unbeatable prices</p>
-                    <div class="hero-btn">
-                        <a href="{{ route('shop') }}" class="btn btn-light me-3">Shop Now</a>
-                        <a href="{{ route('categories') }}" class="btn btn-outline-light">Browse Categories</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.home.slider')
 
     <!-- Recent Products Section -->
     <section class="portfolio-area section-padding">

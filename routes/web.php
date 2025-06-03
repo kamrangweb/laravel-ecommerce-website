@@ -51,8 +51,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Banner route
     Route::controller(BannerController::class)->group(function () {
-        Route::get('/banner/edit', 'homeBanner')->name('banner');
-        Route::post('/banner/update', 'updateBanner')->name('banner.home.update');
+        Route::get('/banner/text/edit', 'bannerText')->name('banner.text');
+        Route::get('/banner/image/edit', 'bannerImage')->name('banner.image');
+        Route::post('/banner/text/update', 'updateBannerText')->name('banner.text.update');
+        Route::post('/banner/image/update', 'updateBannerImage')->name('banner.image.update');
     });
 
     // Footer route

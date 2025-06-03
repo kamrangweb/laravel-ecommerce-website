@@ -32,10 +32,13 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
-                        <span>Banner</span>
+                        <span>Home page</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('banner') }}">Banner edit</a></li>
+                        <li><a href="{{ route('banner.text') }}">Banner Text edit</a></li>
+                    </ul>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('banner.image') }}">Banner Image edit</a></li>
                     </ul>
                 </li>
 

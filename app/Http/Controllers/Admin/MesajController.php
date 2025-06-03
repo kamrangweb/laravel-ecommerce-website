@@ -40,10 +40,8 @@ class MesajController extends Controller
 
         Mesaj::create($request->all());
 
-
-
         $mesaj = array(
-            'bildirim'=>'Kisa surede donus yapilacak',
+            'notification'=>'We will get back to you soon.',
             'alert-type'=>'success'
         );
         //bildirim

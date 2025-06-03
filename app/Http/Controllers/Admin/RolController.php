@@ -32,7 +32,7 @@ class RolController extends Controller
             'grup_adi'=>$request->grup_adi,
         ]);
         $mesaj = array(
-            'bildirim'=>'Izin ekleme başarılı.',
+            'notification'=>'Permission added successfully.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -55,10 +55,9 @@ class RolController extends Controller
         Permission::findOrFail($izin_id)->update([
             'name'=>$request->name,
             'grup_adi'=>$request->grup_adi,
-
         ]);
         $mesaj = array(
-            'bildirim'=>'Izin guncelleme başarılı.',
+            'notification'=>'Permission updated successfully.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -73,10 +72,10 @@ class RolController extends Controller
         Permission::findOrFail($id)->delete();
         
         $mesaj = array(
-        'bildirim'=>'Izin SILME başarılı.',
-        'alert-type'=>'success'
-    );
-    //bildirim
+            'notification'=>'Permission deleted successfully.',
+            'alert-type'=>'success'
+        );
+        //bildirim
 
         return Redirect()->back()->with($mesaj);
 
@@ -109,7 +108,7 @@ class RolController extends Controller
             'name'=>$request->name,
         ]);
         $mesaj = array(
-            'bildirim'=>'ROL ekleme başarılı.',
+            'notification'=>'Role added successfully.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -131,10 +130,9 @@ class RolController extends Controller
         $rol_id = $request->id;
         Role::findOrFail($rol_id)->update([
             'name'=>$request->name,
-
         ]);
         $mesaj = array(
-            'bildirim'=>'Rol guncelleme başarılı.',
+            'notification'=>'Role updated successfully.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -149,10 +147,10 @@ class RolController extends Controller
         Role::findOrFail($id)->delete();
         
         $mesaj = array(
-        'bildirim'=>'ROL SILME başarılı.',
-        'alert-type'=>'success'
-    );
-    //bildirim
+            'notification'=>'Role deleted successfully.',
+            'alert-type'=>'success'
+        );
+        //bildirim
 
         return Redirect()->back()->with($mesaj);
 
@@ -178,16 +176,13 @@ class RolController extends Controller
         $yetkiler = $request->yetki;
             
         foreach ($yetkiler as $key => $item) {
-            # code...
             $data['role_id'] = $request->rol_id;
             $data['permission_id'] = $item;
-
             DB::table('role_has_permissions')->insert($data);
-
         }
 
         $mesaj = array(
-            'bildirim'=>'ROL SILME başarılı.',
+            'notification'=>'Permissions assigned successfully.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -236,7 +231,7 @@ class RolController extends Controller
 
         }
         $mesaj = array(
-            'bildirim'=>'ROL guncelleme başarılı.',
+            'notification'=>'Role permissions updated successfully.',
             'alert-type'=>'success'
         );
         //bildirim

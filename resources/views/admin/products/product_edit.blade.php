@@ -116,7 +116,7 @@
             <div class="row mb-3">
                 <label for="example-text-input" class="col-form-label">SKU</label>
                 <div class="col-sm-10 form-group">
-                    <input class="form-control" name="sku" type="text" placeholder="SKU" value="{{ $product->product_sku }}">
+                    <input class="form-control" name="sku" type="number" placeholder="SKU" value="{{ $product->product_sku }}">salam
                     @error('sku')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror

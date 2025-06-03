@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 //Bildirim
         $mesaj = array(
-            'bildirim'=>'Giriş başarılı.',
+            'notification'=>'Login successful.',
             'alert-type'=>'success'
         );
 //Bildirim
@@ -48,12 +48,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
         
-        //Bildirim
         $mesaj = array(
-            'bildirim'=>'Çıkış başarılı.',
-            'alert-type'=>'info'
+            'notification' => 'Logout successful.',
+            'alert-type' => 'info'
         );
-        //Bildirim
 
         return redirect('/login')->with($mesaj);
     }

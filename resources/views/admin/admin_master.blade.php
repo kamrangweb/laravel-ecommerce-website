@@ -118,23 +118,23 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
             
-           @if(Session::has('bildirim'))
+           @if(Session::has('notification'))
            var type = "{{ Session::get('alert-type','info') }}"
            switch(type){
            case 'info':
-            toastr.info(" {{ Session::get('bildirim') }} ");
+            toastr.info(" {{ Session::get('notification') }} ");
             break;
 
         case 'success':
-            toastr.success(" {{ Session::get('bildirim') }} ");
+            toastr.success(" {{ Session::get('notification') }} ");
             break;
 
         case 'warning':
-            toastr.warning(" {{ Session::get('bildirim') }} ");
+            toastr.warning(" {{ Session::get('notification') }} ");
             break;
 
         case 'error':
-            toastr.error(" {{ Session::get('bildirim') }} ");
+            toastr.error(" {{ Session::get('notification') }} ");
             break; 
         }
         @endif 

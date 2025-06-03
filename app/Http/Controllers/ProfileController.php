@@ -52,7 +52,7 @@ class ProfileController extends Controller
         //bildirim
 
         $mesaj = array(
-            'bildirim'=>'Güncəlləmə başarılı.',
+            'notification'=>'Update successful.',
             'alert-type'=>'success'
         );
         //bildirim
@@ -83,7 +83,7 @@ class ProfileController extends Controller
         //bildirim
 
         $mesaj = array(
-            'bildirim'=>'Silinme başarılı.',
+            'notification'=>'Account deleted successfully.',
             'alert-type'=>'warning'
         );
         //bildirim

@@ -1,4 +1,3 @@
-
 <!-- admin_master.blade.php **************************-->
 <!--  boş olamaz validate *--->
 <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
@@ -67,15 +66,10 @@
 				<div class="card">
 					<div class="card-body">
 
-						<h4 class="card-title">Urun Duzenle</h4>
+						<h4 class="card-title">Add Product</h4>
 
-						<form method="post" action="{{ route('urun.guncelle.form') }}"  enctype="multipart/form-data" id="myForm">
+						<form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" id="myForm">
 							@csrf
-
-                            <input type="hidden" name="id" value="{{ $urunler->id }}">
-                            <input type="hidden" name="onceki_resim" value="{{ $urunler->resim }}">
-        
-
 
 <div class="col-md-12">
     <div class="row">
@@ -83,26 +77,56 @@
         <div class="col-md-8">
 
             <div class="row mb-3">
-                <label for="example-text-input" class="col-form-label">Baslik</label>
+                <label for="example-text-input" class="col-form-label">Product Name</label>
                 <div class="col-sm-10 form-group">
-                    <input class="form-control" name="baslik" type="text" placeholder="Baslik" value="{{ $urunler->baslik }}">
-                    @error('baslik')
+                    <input class="form-control" name="product_name" type="text" placeholder="Product Name">
+                    @error('product_name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label for="example-text-input" class="col-form-label">Tag</label>
+                <!-- <label for="example-text-input" class="col-form-label">Short Description</label>
                 <div class="col-sm-12 form-group">
-                    <input class="form-control" name="tag" type="text" data-role="tagsinput" value="{{ $urunler->tag }}">
-                </div>
+                    <textarea class="form-control" name="short_description" rows="3" placeholder="Short Description"></textarea>
+                </div> -->
             </div>
             
             <div class="row mb-3">
+                <label for="example-text-input" class="col-form-label">Selling Price</label>
                 <div class="col-sm-10 form-group">
-                    <label for="example-text-input" class="col-form-label">Baslik</label>
-                    <textarea id="elm1 " name="metin" cols="30" rows="10">{{ $urunler->metin }}"</textarea>
+                    <input class="form-control" name="selling_price" type="number" step="0.01" placeholder="Selling Price">
+                    @error('selling_price')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="example-text-input" class="col-form-label">Discount Price</label>
+                <div class="col-sm-10 form-group">
+                    <input class="form-control" name="discount_price" type="number" step="0.01" placeholder="Discount Price">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="example-text-input" class="col-form-label">SKU</label>
+                <div class="col-sm-10 form-group">
+                    <input class="form-control" name="sku" type="text" placeholder="SKU">
+                    @error('sku')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="example-text-input" class="col-form-label">Stock</label>
+                <div class="col-sm-10 form-group">
+                    <input class="form-control" name="stock" type="number" placeholder="Stock">
+                    @error('stock')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
 
@@ -110,94 +134,37 @@
 
         <div class="col-md-4">
             <div class="row mb-3">
-                <label class=" col-form-label">Kategori sec</label>
-                <div class="col-sm-12">
-                    <select class="form-select" aria-label="Default select example" name="kategori_id">
-                        <option selected>Kategori sec</option>
-                        @foreach ($kategoriler as $kategori)
-                        <option value="{{ $kategori->id }}" {{ $kategori->id == $urunler->kategori_id ? 'selected' : '' }}>
-                            {{ $kategori->kategori_adi }}</option>
-
-                        @endforeach
-                        </select>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="example-text-input" class=" col-form-label">Alt Kategori Adı</label>
+                <label for="example-text-input">Product Image</label>
                 <div class="col-sm-12 form-group">
-                    <select class="form-select" aria-label="Default select example" name="altkategori_id">
-                        
-                        
-                        <option></option>
-                        
-                        @foreach ($altkategoriler as $altkategori)
-                        <option value="{{ $altkategori->id }}" {{ $altkategori->id == $urunler->altkategori_id ? 'selected' : '' }}>
-                            {{ $altkategori->altkategori_adi }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="example-text-input" class=" col-form-label">Sira no</label>
-                <div class="col-sm-12 form-group">
-                    <input class="form-control" name="sirano" type="number" placeholder="Sira No" value="{{ $urunler->sirano }}">
-                </div>
-            </div>
-
-            <!-- end row -->
-            <div class="row mb-3">
-                <label for="example-text-input" >Resim</label>
-                <div class="col-sm-12 form-group">
-                    <input type="file" name="resim" id="resim" class="form-control">
+                    <input type="file" name="product_thumbnail" id="product_thumbnail" class="form-control">
+                    @error('product_thumbnail')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="example-text-input"></label>
                 <div class="col-sm-12">
-                    <img class="rounded avatar-lg" src="{{ !empty($urunler->resim) ? url($urunler->resim) : url('upload/resim-yok.png') }}" alt="" id="resimGoster">
+                    <img class="rounded avatar-lg" src="{{ url('upload/resim-yok.png') }}" alt="" id="product_thumbnail_preview">
                 </div>
             </div>
-
-
-            <!-- end row -->
 
             <div class="row mb-3">
-                <label for="example-text-input" class=" col-form-label">Anahtar</label>
+                <label for="example-text-input" class="col-form-label">Status</label>
                 <div class="col-sm-12 form-group">
-                    <input class="form-control" name="anahtar" type="text" placeholder="Anahtar" value="{{ $urunler->anahtar }}">
-                
+                    <select class="form-select" name="status">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
                 </div>
             </div>
-            <!-- end row -->
 
-            <div class="row mb-3">
-                <label for="example-text-input" class=" col-form-label">Açıklama</label>
-                <div class="col-sm-12 form-group">
-                    <input class="form-control" name="aciklama" type="text" placeholder="Açıklama" value="{{ $urunler->aciklama }}">
-                </div>
-            </div>
-            <!-- end row -->
-            <input type="submit" class="btn btn-info waves-effect waves-light" value="Urun Ekle">
-                                    
-                                    
+            <input type="submit" class="btn btn-info waves-effect waves-light" value="Add Product">
         </div>
-        <!-- col-md-4 bitti -->
-
-                                
-
-                                
-                                
-
-                                
-     </div>
+    </div>
 </div>
-					
-                               
-                        </form>
+						</form>
 
 
 					</div>
@@ -234,7 +201,7 @@
 
 				
 
-				sirano: 
+				resim: 
 				{
 					required : true,
 				},
@@ -247,9 +214,9 @@
             		required : 'Altkategori adı giriniz',
             	},
 
-            	sirano: 
+            	resim: 
             	{
-            		required : 'Sirano giriniz',
+            		required : 'Resim giriniz',
             	},
             }, // end message 
 

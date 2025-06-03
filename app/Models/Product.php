@@ -11,14 +11,16 @@ class Product extends Model
 
     protected $connection = 'product_service';
     
+    protected $table = 'products';
+
     protected $fillable = [
         'product_name',
         'product_thumbnail',
         'short_description',
         'selling_price',
         'discount_price',
-        'sku',
-        'stock',
+        'product_sku',
+        'product_stock_quantity',
         'status'
     ];
 

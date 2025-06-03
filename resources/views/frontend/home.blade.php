@@ -6,7 +6,7 @@
     @include('frontend.home.slider')
 
     <!-- Recent Products Section -->
-    <section class="portfolio-area section-padding">
+    <section class="portfolio-area section-padding py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">

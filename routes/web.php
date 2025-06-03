@@ -97,13 +97,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Product route
-    Route::controller(ProductController::class)->group(function () {
+    Route::prefix('admin')->controller(ProductController::class)->group(function () {
         Route::get('/product/list', 'productList')->name('product.list');
-        Route::get('/product/status', 'productStatus');
+        Route::post('/product/status', 'productStatus')->name('product.status');
         Route::get('/product/add', 'addProduct')->name('product.add');
-        Route::post('/product/add/form', 'addProductForm')->name('product.add.form');
+        Route::post('/product/store', 'storeProduct')->name('product.store');
         Route::get('/product/edit/{id}', 'editProduct')->name('product.edit');
-        Route::post('/product/update/form', 'updateProductForm')->name('product.update.form');
+        Route::post('/product/update', 'updateProduct')->name('product.update');
         Route::get('/product/delete/{id}', 'deleteProduct')->name('product.delete');
     });
 

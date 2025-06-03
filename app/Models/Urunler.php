@@ -2,18 +2,36 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Urunler extends Model
+class Product extends Model
 {
-    //
-    protected $guarded = [];
+    use HasFactory;
 
-    public function Altkategori(){
-        return $this->belongsTo(Altkategoriler::class,'altkategori_id','id');
+    protected $table = 'urunler';
+
+    protected $fillable = [
+        'kategori_id',
+        'altkategori_id',
+        'baslik',
+        'url',
+        'tag',
+        'metin',
+        'anahtar',
+        'aciklama',
+        'sirano',
+        'resim',
+        'durum'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'kategori_id');
     }
-    
-    public function kategoriler(){
-        return $this->belongsTo(Kategoriler::class,'kategori_id','id');
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class, 'altkategori_id');
     }
 }

@@ -42,7 +42,7 @@
                     <h1 class="product-title mb-3">{{ $product->product_name }}</h1>
                     <div class="product-price mb-3">
                         <span class="current-price">${{ $product->selling_price }}</span>
-                        @if($product->discount_price)
+                        @if($product->discount_price && $product->regular_price > 0)
                             <span class="original-price">${{ $product->regular_price }}</span>
                             <span class="discount-badge">{{ round((($product->regular_price - $product->discount_price) / $product->regular_price) * 100) }}% OFF</span>
                         @endif

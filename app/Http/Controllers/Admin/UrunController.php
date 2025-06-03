@@ -9,194 +9,154 @@ use App\Models\Kategoriler;
 use App\Models\Altkategoriler;
 use App\Models\Urunler;
 
-class UrunController extends Controller
+class ProductController extends Controller
 {
-    //
-
-    public function  UrunListe(){
-        $urunliste = Urunler::latest()->get();
-        return view('admin.urunler.urun_liste',compact('urunliste'));
-
+    public function productList()
+    {
+        $productList = Urunler::latest()->get();
+        return view('admin.urunler.urun_liste', compact('productList'));
     }
     
-    public function  UrunDurum(Request $request){
-        $urun = Urunler::find($request->urun_id);
-        $urun->durum = $request->durum;
-        $urun->save();
+    public function productStatus(Request $request)
+    {
+        $product = Urunler::find($request->urun_id);
+        $product->durum = $request->durum;
+        $product->save();
 
-        return response()->json(['success'=>'Basarili']);
-        // return view('admin.urunler.urun_liste',compact('urunliste'));
-
+        return response()->json(['success' => 'Successful']);
     }
     
-    
-    public function  UrunEkle(Request $request){
-        $kategoriler = Kategoriler::latest()->get();
-      
-        return view('admin.urunler.urun_ekle',compact('kategoriler'));
-        // return view('admin.urunler.urun_liste',compact('urunliste'));
-
+    public function addProduct(Request $request)
+    {
+        $categories = Kategoriler::latest()->get();
+        return view('admin.urunler.urun_ekle', compact('categories'));
     }
 
-    public function UrunEkleForm(Request $request){
-        // $manager = new ImageManager(['driver' => 'imagick']);
-
+    public function storeProduct(Request $request)
+    {
         $request->validate([
-            'baslik'=>'required',
+            'baslik' => 'required',
         ],
         [
-            'baslik.required'=>'Baslik bos olamaz',
-
+            'baslik.required' => 'Title cannot be empty',
         ]);
 
-            $resim = $request->file('resim');
-            $resimadi = hexdec(uniqid()).'.'.$resim->getClientOriginalExtension();
-            $resim->move(public_path('upload/urunler/'),$resimadi);
-            $resim_kaydet = 'upload/urunler/'.$resimadi;
+        $image = $request->file('resim');
+        $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('upload/urunler/'), $imageName);
+        $imagePath = 'upload/urunler/'.$imageName;
 
-            // $homebanner->save('upload/banner/'.$resimadi);
+        Urunler::insert([
+            'kategori_id' => $request->kategori_id,
+            'altkategori_id' => $request->altkategori_id,
+            'baslik' => $request->baslik,
+            'url' => str()->slug($request->baslik),
+            'tag' => $request->tag,
+            'metin' => $request->metin,
+            'anahtar' => $request->anahtar,
+            'aciklama' => $request->aciklama,
+            'sirano' => $request->sirano,
+            'resim' => $imagePath,
+            'durum' => 1,
+            'created_at' => Carbon::now()
+        ]);
 
-
-            Urunler::insert([
-                'kategori_id'=>$request->kategori_id,
-                'altkategori_id'=>$request->altkategori_id,
-                'baslik'=>$request->baslik,
-                'url'=>str()->slug($request->baslik),
-                
-                'tag'=>$request->tag,
-                'metin'=>$request->metin,
-                'anahtar'=>$request->anahtar,
-                'aciklama'=>$request->aciklama,
-                'sirano'=>$request->sirano,
-                'resim'=>$resim_kaydet,
-                'durum'=>1,
-                'created_at'=>Carbon::now()
-            ]);
-
-
-            $mesaj = array(
-                'bildirim'=>'resim başarılı.',
-                'alert-type'=>'success'
-            );
-            //bildirim
+        $notification = array(
+            'message' => 'Product added successfully',
+            'alert-type' => 'success'
+        );
     
-            return Redirect()->route('urun.liste')->with($mesaj);
-
-     
-
-        $request->save();
-
+        return redirect()->route('urun.liste')->with($notification);
     }
 
-    public function UrunDuzenle($id){
-        $kategoriler = Kategoriler::latest()->get();
-        $altkategoriler = ALtkategoriler::latest()->get();
-        $urunler = Urunler::findOrFail($id);
+    public function editProduct($id)
+    {
+        $categories = Kategoriler::latest()->get();
+        $subcategories = Altkategoriler::latest()->get();
+        $product = Urunler::findOrFail($id);
 
-        return view('admin.urunler.urun_duzenle',compact('kategoriler','altkategoriler','urunler'));
+        return view('admin.urunler.urun_duzenle', compact('categories', 'subcategories', 'product'));
     }
-    public function UrunGuncelle(Request $request){
-        // $manager = new ImageManager(['driver' => 'imagick']);
 
+    public function updateProduct(Request $request)
+    {
         $request->validate([
-            'baslik'=>'required',
+            'baslik' => 'required',
         ],
         [
-            'baslik.required'=>'bos olmaaz',
-
+            'baslik.required' => 'Title cannot be empty',
         ]);
 
-        $urun_id = $request->id;
-        $eski_resim = $request->onceki_resim;
+        $productId = $request->id;
+        $oldImage = $request->onceki_resim;
 
+        if($request->file('resim')) {
+            $image = $request->file('resim');
+            $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/urunler/'), $imageName);
+            $imagePath = 'upload/urunler/'.$imageName;
 
-        if($request->file('resim')){
-            $resim = $request->file('resim');
-            $resimadi = hexdec(uniqid()).'.'.$resim->getClientOriginalExtension();
-            $resim->move(public_path('upload/urunler/'),$resimadi);
-            $resim_kaydet = 'upload/urunler/'.$resimadi;
-
-            // $homebanner->save('upload/banner/'.$resimadi);
-
-            //eski resim sil
-            if(file_exists($eski_resim)){
-                unlink($eski_resim);
+            if(file_exists($oldImage)) {
+                unlink($oldImage);
             }
-            //eski resim sil
-            Urunler::findOrFail($urun_id)->update([
-                'kategori_id'=>$request->kategori_id,
-                'altkategori_id'=>$request->altkategori_id,
-                'baslik'=>$request->baslik,
-                'url'=>str()->slug($request->baslik),
-                
-                'tag'=>$request->tag,
-                'metin'=>$request->metin,
-                'anahtar'=>$request->anahtar,
-                'aciklama'=>$request->aciklama,
-                'sirano'=>$request->sirano,
-                'resim'=>$resim_kaydet,
+
+            Urunler::findOrFail($productId)->update([
+                'kategori_id' => $request->kategori_id,
+                'altkategori_id' => $request->altkategori_id,
+                'baslik' => $request->baslik,
+                'url' => str()->slug($request->baslik),
+                'tag' => $request->tag,
+                'metin' => $request->metin,
+                'anahtar' => $request->anahtar,
+                'aciklama' => $request->aciklama,
+                'sirano' => $request->sirano,
+                'resim' => $imagePath,
             ]);
 
-
-            $mesaj = array(
-                'bildirim'=>'resim guncelleme başarılı.',
-                'alert-type'=>'success'
+            $notification = array(
+                'message' => 'Product updated successfully',
+                'alert-type' => 'success'
             );
-            //bildirim
     
-            return Redirect()->route('urun.liste')->with($mesaj);
-
-        }else{
-            Urunler::findOrFail($urun_id)->update([
-                'kategori_id'=>$request->kategori_id,
-                'altkategori_id'=>$request->altkategori_id,
-                'baslik'=>$request->baslik,
-                'url'=>str()->slug($request->baslik),
-                
-                'tag'=>$request->tag,
-                'metin'=>$request->metin,
-                'anahtar'=>$request->anahtar,
-                'aciklama'=>$request->aciklama,
-                'sirano'=>$request->sirano,
-            ]);
-
-
-            $mesaj = array(
-                'bildirim'=>'resimsiz başarılı.',
-                'alert-type'=>'success'
-            );
-            //bildirim
-    
-            return Redirect()->route('urun.liste')->with($mesaj);
+            return redirect()->route('urun.liste')->with($notification);
         }
-        return view('admin.anasayfa.banner_duzenle',compact('homebanner'));
 
+        Urunler::findOrFail($productId)->update([
+            'kategori_id' => $request->kategori_id,
+            'altkategori_id' => $request->altkategori_id,
+            'baslik' => $request->baslik,
+            'url' => str()->slug($request->baslik),
+            'tag' => $request->tag,
+            'metin' => $request->metin,
+            'anahtar' => $request->anahtar,
+            'aciklama' => $request->aciklama,
+            'sirano' => $request->sirano,
+        ]);
 
-            $request->save();
+        $notification = array(
+            'message' => 'Product updated successfully',
+            'alert-type' => 'success'
+        );
 
+        return redirect()->route('urun.liste')->with($notification);
     }
 
-    public function UrunSil($id){
-        $urun_id = Urunler::findOrFail($id);
-        $resim = $urun_id->resim;
+    public function deleteProduct($id)
+    {
+        $product = Urunler::findOrFail($id);
+        $image = $product->resim;
 
-        if(file_exists($resim)){
-            unlink($resim);
+        if(file_exists($image)) {
+            unlink($image);
         }
-
 
         Urunler::findOrFail($id)->delete();
 
-        $mesaj = array(
-            'bildirim'=>'Silme başarılı.',
-            'alert-type'=>'success'
+        $notification = array(
+            'message' => 'Product deleted successfully',
+            'alert-type' => 'success'
         );
-        //bildirim
 
-        return Redirect()->back()->with($mesaj);
+        return redirect()->back()->with($notification);
     }
-    
-
-
-
 }

@@ -24,12 +24,12 @@
                     <div class="product-overlay">
                         <div class="product-actions">
                             <a href="{{ url('product/'.Str::slug($product->product_name).'-'.$product->id) }}" 
-                               class="btn btn-light btn-sm">
+                               class="btn btn-sm">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <button class="btn btn-light btn-sm add-to-cart" data-product-id="{{ $product->id }}">
+                            <a class="btn btn-sm add-to-cart" data-product-id="{{ $product->id }}">
                                 <i class="fas fa-shopping-cart"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </a>
@@ -66,8 +66,8 @@
                 </div>
                 <div class="product-footer d-flex justify-content-between align-items-center">
                     <a href="{{ url('product/'.Str::slug($product->product_name).'-'.$product->id) }}" 
-                       class="btn btn-outline-primary btn-sm">
-                        View Details
+                       class="btn btn-sm btn-outline-primary text-decoration-none text-center w-25">
+                        View
                     </a>
                     <div class="product-rating">
                         <i class="fas fa-star text-warning"></i>
@@ -82,7 +82,25 @@
     </div>
 @endforeach
 
+
+
+
 <style>
+.product-actions .btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0px;
+}
+
+.product-actions .btn:hover {
+    background: #fff;
+}
+
 .product-card {
     background: #fff;
     border-radius: 10px;
@@ -95,6 +113,8 @@
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+
 }
 
 .product-thumb {
@@ -138,21 +158,6 @@
 .product-actions {
     display: flex;
     gap: 10px;
-}
-
-.product-actions .btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.product-actions .btn:hover {
-    background: #fff;
-    color: #007bff;
 }
 
 .discount-badge {
@@ -201,16 +206,6 @@
     border-top: 1px solid #eee;
     padding-top: 15px;
     margin-top: 15px;
-}
-
-.btn-outline-primary {
-    border-width: 2px;
-    font-weight: 500;
-    padding: 8px 20px;
-}
-
-.btn-outline-primary:hover {
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
